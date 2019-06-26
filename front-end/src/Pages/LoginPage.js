@@ -55,21 +55,22 @@ handleChange = (event) => {
   }
 
   render(){
-    const logInAlert = localStorage.loggedIn == "true" ? <h1> Logged In </h1> : console.log('Logged out')
 
-    const logInBtn =  localStorage.loggedIn == "true" ? <button onClick={this.props.logOut}>Log Out</button> : <input type="submit" value="Log In" />
+    console.log(this.props)
+    // const singupLink =
+    // const logInAlert = localStorage.loggedIn == "true" ? <h1> Logged In </h1> : console.log('Logged out')
+    //
+    // const logInBtn =  localStorage.loggedIn == "true" ? <button onClick={this.props.logOut}>Log Out</button> : <input type="submit" value="Log In" />
 
-    console.log(this.props.loggedIn)
 
     return(
       <div>
       <form onSubmit={this.handleLogin}>
           <input type="text" name="username" onChange={this.handleChange} />
-        <input type="password" name="password" onChange={this.handleChange} />
-
-        {logInBtn}
+          <input type="password" name="password" onChange={this.handleChange} />
+          <input type="submit" value="Log In" />
       </form>
-      {logInAlert}
+      <button onClick={() => window.location.replace('http://localhost:3001/signup')}>Signup</button>
       </div>
     )
   }
