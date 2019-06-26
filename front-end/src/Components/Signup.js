@@ -1,18 +1,26 @@
 import React from 'react';
 
 class Signup extends React.Component{
-  state={
-  username: '',
-  password: ''
-}
+  state= {
+    username: '',
+    password: '',
+    avatar: '',
+    exam: '',
+    test_date: ''
+  }
 
+  handleSelect = (name) => {
+    this.setState({
+      exam: name
+    })
+  }
 
-
-handleChange = (event) => {
-  this.setState({
-    [event.target.name]: event.target.value
-  })
-}
+  handleChange = (event) => {
+    console.log(event.target.name)
+    this.setState({
+      [event.target.name]: event.target.value
+    })
+  }
 
 handleSignup = (event) => {
   event.preventDefault()
@@ -28,19 +36,25 @@ handleSignup = (event) => {
       user: {
         username: this.state.username,
         password: this.state.password,
+        exam: this.state.exam
       }
     })
   })
-  .then(r => r.json())
-  .then(r => console.log(r))
-  alert(`Welcome ${this.state.username}`)
-}
+    .then(r => r.json())
+    .then(r => console.log(r))
+    alert(`Welcome ${this.state.username}`)
+  }
 
   render(){
+    console.log(this.state)
     return(
       <form onSubmit={this.handleSignup}>
-          <input type="text" name="username" onChange={this.handleChange} />
+        <input type="text" name="username" onChange={this.handleChange} />
         <input type="password" name="password" onChange={this.handleChange} />
+        <select  onChange={(e) => this.handleSelect(e.target.value)}>
+          <option>Select Test</option>
+          <option name="exam" value="SAT">SAT</option>
+        </select>
 
         <input type="submit" value="Signup" />
       </form>

@@ -51,6 +51,7 @@ handleChange = (event) => {
     localStorage.setItem('loggedIn', true)
   })
   this.props.logIn()
+  window.location.replace('http://localhost:3001')
   }
 
   render(){
