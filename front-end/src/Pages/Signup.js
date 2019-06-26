@@ -49,8 +49,12 @@ handleSignup = (event) => {
     console.log(this.state)
     return(
       <form onSubmit={this.handleSignup}>
-        <input type="text" name="username" onChange={this.handleChange} />
-        <input type="password" name="password" onChange={this.handleChange} />
+        <div>
+        <p>Username
+          <input type="text" name="username" onChange={this.handleChange} /></p>
+        </div>
+        <p>Password
+          <input type="password" name="password" onChange={this.handleChange} /></p>
         <select  onChange={(e) => this.handleSelect(e.target.value)}>
           <option>Select Test</option>
           <option name="exam" value="SAT">SAT</option>

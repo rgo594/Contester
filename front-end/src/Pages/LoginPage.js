@@ -50,8 +50,8 @@ handleChange = (event) => {
     localStorage.setItem('username', data.user.username)
     localStorage.setItem('loggedIn', true)
   })
-  this.props.logIn()
-  window.location.replace('http://localhost:3001')
+    this.props.logIn()
+    window.location.replace('http://localhost:3001')
   }
 
   render(){
@@ -65,12 +65,14 @@ handleChange = (event) => {
 
     return(
       <div>
-      <form onSubmit={this.handleLogin}>
-          <input type="text" name="username" onChange={this.handleChange} />
-          <input type="password" name="password" onChange={this.handleChange} />
-          <input type="submit" value="Log In" />
-      </form>
-      <button onClick={() => window.location.replace('http://localhost:3001/signup')}>Signup</button>
+          <form onSubmit={this.handleLogin}>
+            <p>Username
+            <input type="text" name="username" onChange={this.handleChange} /></p>
+            <p>Password
+            <input type="password" name="password" onChange={this.handleChange} /></p>
+            <input type="submit" value="Log In" />
+          </form>
+          <button onClick={() => window.location.replace('http://localhost:3001/signup')}>Signup</button>
       </div>
     )
   }
