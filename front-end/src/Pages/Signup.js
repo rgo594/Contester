@@ -43,11 +43,13 @@ handleSignup = (event) => {
     .then(r => r.json())
     .then(r => console.log(r))
     alert(`Welcome ${this.state.username}`)
+    window.location.replace('http://localhost:3001/login')
   }
 
   render(){
     console.log(this.state)
     return(
+      <div>
       <form onSubmit={this.handleSignup}>
         <div>
         <p>Username
@@ -62,6 +64,8 @@ handleSignup = (event) => {
 
         <input type="submit" value="Signup" />
       </form>
+      <button onClick={() => window.location.replace('http://localhost:3001/login')}>Login</button>
+      </div>
     )
   }
 }
