@@ -1,4 +1,5 @@
 import React from 'react';
+import 'semantic-ui-css/semantic.min.css';
 
 class LoginPage extends React.Component{
   state={
@@ -48,7 +49,6 @@ handleChange = (event) => {
       localStorage.setItem('token', data.jwt)
       localStorage.setItem('user_id', data.user.id)
       localStorage.setItem('username', data.user.username)
-      localStorage.setItem('loggedIn', true)
   })
     this.props.logIn()
     window.location.replace('http://localhost:3001')
@@ -72,10 +72,10 @@ handleChange = (event) => {
             <input type="password" name="password" onChange={this.handleChange} /></p>
             <input type="submit" value="Log In" />
           </form>
-          <button onClick={() => window.location.replace('http://localhost:3001/signup')}>Signup</button>
+          <button as="a" onClick={() => window.location.replace('http://localhost:3001/signup')}>Signup</button>
       </div>
-    )
-  }
+      )
+    }
 }
 // <h1>Welcome {localStorage.username}</h1>
 // localStorage.username

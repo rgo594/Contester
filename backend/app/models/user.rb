@@ -1,5 +1,4 @@
 class User < ApplicationRecord
   has_secure_password
-  has_many :arenas
-  has_many :quizzes, through: :arenas
+  has_many :lob_users
 end

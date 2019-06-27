@@ -10,23 +10,46 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_25_175207) do
+ActiveRecord::Schema.define(version: 2019_06_27_142240) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "arenas", force: :cascade do |t|
+  create_table "lob_users", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "lobby_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["lobby_id"], name: "index_lob_users_on_lobby_id"
+    t.index ["user_id"], name: "index_lob_users_on_user_id"
+  end
+
+  create_table "lobbies", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "quiz_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["quiz_id"], name: "index_arenas_on_quiz_id"
-    t.index ["user_id"], name: "index_arenas_on_user_id"
+    t.index ["quiz_id"], name: "index_lobbies_on_quiz_id"
+    t.index ["user_id"], name: "index_lobbies_on_user_id"
+  end
+
+  create_table "questions", force: :cascade do |t|
+    t.text "description"
+    t.string "answer"
+    t.string "a"
+    t.string "b"
+    t.string "c"
+    t.string "d"
+    t.bigint "quiz_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["quiz_id"], name: "index_questions_on_quiz_id"
   end
 
   create_table "quizzes", force: :cascade do |t|
-    t.string "question"
-    t.string "answer"
+    t.string "name"
+    t.string "subject"
+    t.string "questList"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -41,6 +64,9 @@ ActiveRecord::Schema.define(version: 2019_06_25_175207) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "arenas", "quizzes"
-  add_foreign_key "arenas", "users"
+  add_foreign_key "lob_users", "lobbies"
+  add_foreign_key "lob_users", "users"
+  add_foreign_key "lobbies", "quizzes"
+  add_foreign_key "lobbies", "users"
+  add_foreign_key "questions", "quizzes"
 end
