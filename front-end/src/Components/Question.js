@@ -39,4 +39,6 @@ class Question extends Component {
 
 }
 
+  // {setTimeout(() => { this.props.nextQuest(1) }, miliTimer)}
+
 export default Question;
