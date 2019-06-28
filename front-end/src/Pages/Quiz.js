@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
+import QuestionList from '../Components/QuestionList'
 
 class Quiz extends Component {
 
   render() {
     return (
-      <div></div>
+      <div>
+        <QuestionList />
+      </div>
     );
   }
 

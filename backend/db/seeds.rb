@@ -9,3 +9,4 @@ User.create :username => "Rob", :password_digest => "123", :exam => "SAT", :test
 Quiz.create :name => "SAT prep", :subject => "SAT", :id => 1
 Question.create :description => "Choose a synonym of pretentious", :a => "austere", :b => "elated", :c => "ostentatious", :d => "ecstatic", :answer => "c", :quiz_id => 1
 Question.create :description => "Choose a synonym of boring", :a => "spartan", :b => "jejune", :c => "tawdry", :d => "muted", :answer => "b", :quiz_id => 1
+Question.create :description => "What is Gokus saiyan name?", :a => "carrot cake", :b => "caccao", :c => "crate", :d => "kakarot", :answer => "d", :quiz_id => 1

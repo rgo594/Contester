@@ -64,7 +64,7 @@ handleSignup = (event) => {
 
         <input type="submit" value="Signup" />
       </form>
-      <button onClick={() => window.location.replace('http://localhost:3001/login')}>Login</button>
+        <button onClick={() => window.location.replace('http://localhost:3001/login')}>Login</button>
       </div>
     )
   }

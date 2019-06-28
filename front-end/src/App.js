@@ -5,7 +5,7 @@ import Signup from './Pages/Signup'
 import Homepage from './Pages/Homepage'
 import LoginPage from './Pages/LoginPage'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import QuestionList from './Components/QuestionList'
+import Quiz from './Pages/Quiz'
 
 class App extends React.Component {
   state = {
@@ -33,7 +33,7 @@ class App extends React.Component {
             <Router>
               <Switch>
                 <Route exact path ="/" render={() => <Homepage logOut={this.logOut}/>}/>
-                <Route exact path ="/quiz" render={() => <QuestionList/>}/>
+                <Route exact path ="/quiz" render={() => <Quiz />}/>
                 <Route path ="/login" render={() => <LoginPage loggedIn={this.state.loggedIn} logOut={this.logOut} logIn={this.logIn} />}/>
                 <Route path ="/signup" component={Signup}/>
               </Switch>

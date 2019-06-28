@@ -8,18 +8,6 @@ class LoginPage extends React.Component{
   token: ''
 }
 
-
-    // componentDidMount() {
-    //   fetch('http://localhost:3000/profile', {
-    //     method: 'GET',
-    //     headers: {
-    //       Authorization: `Bearer ${this.state.token}`
-    //     }
-    //   })
-    //   .then(response => response.json())
-    //   .then(console.log)
-    // }
-
 handleChange = (event) => {
   this.setState({
     [event.target.name]: event.target.value
@@ -45,7 +33,6 @@ handleChange = (event) => {
   })
   .then(r => r.json())
   .then(data => {
-    console.log(data)
       localStorage.setItem('token', data.jwt)
       localStorage.setItem('user_id', data.user.id)
       localStorage.setItem('username', data.user.username)
@@ -56,14 +43,8 @@ handleChange = (event) => {
 
   render(){
 
-    console.log(this.props)
-    // const singupLink =
-    // const logInAlert = localStorage.loggedIn == "true" ? <h1> Logged In </h1> : console.log('Logged out')
-    //
-    // const logInBtn =  localStorage.loggedIn == "true" ? <button onClick={this.props.logOut}>Log Out</button> : <input type="submit" value="Log In" />
-
-
     return(
+
       <div>
           <form onSubmit={this.handleLogin}>
             <p>Username
@@ -77,7 +58,5 @@ handleChange = (event) => {
       )
     }
 }
-// <h1>Welcome {localStorage.username}</h1>
-// localStorage.username
 
 export default LoginPage

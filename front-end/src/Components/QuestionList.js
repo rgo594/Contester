@@ -6,8 +6,9 @@ class QuestionList extends Component {
   state = {
     questions: [],
     start: 0,
-    end: 1
-
+    end: 1,
+    counter: 100000,
+    score: 0
   }
 
   componentDidMount() {
@@ -19,18 +20,25 @@ class QuestionList extends Component {
   nextQuest = (x) => {
     this.setState({
       start: this.state.start + x,
-      end: this.state.end + x,
+      end: this.state.end + x
      })
   }
 
+  setScore = () => {
+    this.setState({
+      score: this.state.score + 1
+    })
+  }
+
   render() {
-    console.log(this.state.end)
+
     const question = this.state.questions.slice(this.state.start, this.state.end).map(q => {
-      return <Question question={q} nextQuest={this.nextQuest} />
+      return <Question setScore={this.setScore} question={q} nextQuest={this.nextQuest} />
     })
 
     return (
       <div>
+        <h1>Score: {this.state.score} </h1>
         {question}
       </div>
     );
