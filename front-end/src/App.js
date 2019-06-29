@@ -28,14 +28,17 @@ class App extends React.Component {
   }
 
   render(){
+    // const quiz = localStorage.token ?
+    // <Route exact path ="/quiz" render={() => <Quiz />}/> : window.location.replace('http://localhost:3001/login')
+
     return (
         <React.Fragment>
             <Router>
               <Switch>
-                <Route exact path ="/" render={() => <Homepage logOut={this.logOut}/>}/>
-                <Route exact path ="/quiz" render={() => <Quiz />}/>
                 <Route path ="/login" render={() => <LoginPage loggedIn={this.state.loggedIn} logOut={this.logOut} logIn={this.logIn} />}/>
                 <Route path ="/signup" component={Signup}/>
+                <Route exact path ="/" render={() => <Homepage logOut={this.logOut}/>}/>
+                <Route exact path ="/quiz" render={() => <Quiz />}/>
               </Switch>
             </Router>
         </React.Fragment>

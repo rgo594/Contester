@@ -15,16 +15,17 @@ class Question extends Component {
     return nextQuest
   }
 
+
+
   render() {
     // const interval = setInterval(() => {
     //   return this.state.counter--;
     //   }, 1000)
-
-    const miliTimer = 4000
-    let secTimer = 4000 / 1000
+    console.log(this.props.counter)
 
     return (
       <div>
+
         <div>
         <h4>{this.props.question.description}</h4>
           <p><button onClick={(e) => this.colorBtn(e)} value="a">A</button> {this.props.question.a} </p>
@@ -39,6 +40,6 @@ class Question extends Component {
 
 }
 
-  // {setTimeout(() => { this.props.nextQuest(1) }, miliTimer)}
+  //{setTimeout(() => { this.props.nextQuest(1) }, miliTimer)}
 
 export default Question;

@@ -7,22 +7,33 @@ class QuestionList extends Component {
     questions: [],
     start: 0,
     end: 1,
-    counter: 100000,
+    counter: 5,
     score: 0,
     filteredQuestions: [],
     display: false
   }
 
+
+
   componentDidMount() {
     fetch('http://localhost:3000/questions')
       .then(response => response.json())
       .then(x => this.setState({questions: x.questions }));
+
+      setInterval(() => {
+        this.state.counter > 0 ?
+        this.setState({ counter: --this.state.counter })
+        :
+        this.nextQuest(1)
+      }, 1000)
+
   }
 
   nextQuest = (x) => {
     this.setState({
       start: this.state.start + x,
-      end: this.state.end + x
+      end: this.state.end + x,
+      counter: 5
      })
   }
 
@@ -40,27 +51,24 @@ class QuestionList extends Component {
     })})
   }
 
+
   render() {
-    // const interval = setInterval(() => {
-    //   this.setState({counter: --this.state.counter})
-    //   }, 1000)
-    console.log(this.state.filteredQuestions)
-
     const question = this.state.filteredQuestions.slice(this.state.start, this.state.end).map(q => {
-      return <Question setScore={this.setScore} question={q} nextQuest={this.nextQuest} />
+      return <Question counter={this.state.counter} setScore={this.setScore} question={q} nextQuest={this.nextQuest} />
     })
-    return (
 
+    return (
       <div>
+      <h1>{this.state.counter}</h1>
         <button onClick={() => {this.filterQuestions(1)} }>SAT</button>
         <button onClick={() => {this.filterQuestions(2)} }>Series 7</button>
 
         {this.state.display ?
-        <div>
-          <h1>Score: {this.state.score} </h1>
-          {question}
-        </div>
-        : <h4>Choose a category</h4>
+          <div>
+            <h1>Score: {this.state.score} </h1>
+            {question}
+          </div>
+          : <h4>Choose a category</h4>
         }
       </div>
     );
