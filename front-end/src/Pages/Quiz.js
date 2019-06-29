@@ -5,11 +5,12 @@ class Quiz extends Component {
 
   render() {
     return (
-      <div>
-      <button onClick={() => window.location.replace('http://localhost:3001')}>Home</button>
-        <QuestionList />
-      </div>
-
+      localStorage.token ?
+        <div>
+          <button onClick={() => window.location.replace('http://localhost:3001')}>Home</button>
+            <QuestionList />
+        </div>
+      : window.location.replace('http://localhost:3001/login')
     );
   }
 

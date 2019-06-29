@@ -53,7 +53,7 @@ handleChange = (event) => {
             <input type="password" name="password" onChange={this.handleChange} /></p>
             <input type="submit" value="Log In" />
           </form>
-          <button as="a" onClick={() => window.location.replace('http://localhost:3001/signup')}>Signup</button>
+        <button as="a" onClick={() => window.location.replace('http://localhost:3001/signup')}>Signup</button>
       </div>
       )
     }
