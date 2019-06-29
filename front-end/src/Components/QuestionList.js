@@ -13,26 +13,27 @@ class QuestionList extends Component {
     display: false
   }
 
-
-
   componentDidMount() {
     fetch('http://localhost:3000/questions')
       .then(response => response.json())
       .then(x => this.setState({questions: x.questions }));
 
+
       setInterval(() => {
-        this.state.counter > 0 ?
-        this.setState({ counter: --this.state.counter })
-        :
-        this.nextQuest(1)
+        this.state.display ?
+          (this.state.counter) > 0 ?
+            (this.setState({ counter: --this.state.counter }))
+            :
+            (this.nextQuest(1))
+        : console.log('')
       }, 1000)
 
   }
 
-  nextQuest = (x) => {
+  nextQuest = (index) => {
     this.setState({
-      start: this.state.start + x,
-      end: this.state.end + x,
+      start: this.state.start + index,
+      end: this.state.end + index,
       counter: 5
      })
   }
@@ -59,13 +60,14 @@ class QuestionList extends Component {
 
     return (
       <div>
-      <h1>{this.state.counter}</h1>
+
         <button onClick={() => {this.filterQuestions(1)} }>SAT</button>
         <button onClick={() => {this.filterQuestions(2)} }>Series 7</button>
 
         {this.state.display ?
           <div>
             <h1>Score: {this.state.score} </h1>
+            <h1>{this.state.counter}</h1>
             {question}
           </div>
           : <h4>Choose a category</h4>
