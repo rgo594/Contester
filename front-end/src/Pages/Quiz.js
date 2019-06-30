@@ -3,6 +3,9 @@ import QuestionList from '../Components/QuestionList'
 // import { ActionCableConsumer } from 'react-actioncable-provider'
 
 class Quiz extends Component {
+  state = {
+    questions: []
+  }
 
   render() {
     return (
@@ -16,5 +19,12 @@ class Quiz extends Component {
   }
 
 }
+
+// <ActionCableConsumer
+//   channel={{ channel: 'FeedChannel'}}
+//   onReceived={(cool) => {
+//     console.log('moo', cool)
+//   }}
+// />
 
 export default Quiz;

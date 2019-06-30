@@ -16,7 +16,9 @@ class QuestionList extends Component {
     btnDisplay: true
   }
 
-  componentDidMount() {
+  else = 'xf'
+
+  componentDidMount(){
     fetch('http://localhost:3000/questions')
       .then(response => response.json())
       .then(x => this.setState({questions: x.questions }));
@@ -28,7 +30,7 @@ class QuestionList extends Component {
           (this.setState({ counter: --this.state.counter }))
           :
           (this.nextQuest(1))
-      : console.log('')
+      : this.else = ''
     }, 1000)
   }
 
@@ -52,6 +54,8 @@ class QuestionList extends Component {
   }
 
   filterQuestions = (input_id) => {
+    fetch('http://localhost:3000/broadcast')
+
     this.setState({
       display: true,
       btnDisplay: false,
@@ -94,13 +98,16 @@ class QuestionList extends Component {
         <button onClick={() => this.replay()}>Play again?</button>
       </div>
       :
-      console.log('')
+      this.else = ''
 
     return (
       <div>
-        <ActionCableConsumer
+      <ActionCableConsumer
         channel={{ channel: 'FeedChannel'}}
-        />
+        onReceived={(cool) => {
+          console.log('moo', cool)
+        }}
+      />
 
         {this.state.display ?
           <div>
