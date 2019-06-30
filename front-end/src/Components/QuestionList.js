@@ -84,7 +84,7 @@ class QuestionList extends Component {
     })
 
     const postGameDisplay = () => {
-      return <h1>Final Score:{this.state.score} </h1>
+      return <h1>Final Score: {this.state.score}</h1>
     }
 
     const showScore = this.state.questIndex > this.state.filteredQuestions.length ?
