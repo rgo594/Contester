@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import QuestionList from '../Components/QuestionList'
+// import { ActionCableConsumer } from 'react-actioncable-provider'
 
 class Quiz extends Component {
 

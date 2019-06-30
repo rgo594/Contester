@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Question from './Question'
+import { ActionCableConsumer } from 'react-actioncable-provider'
 
 class QuestionList extends Component {
 
@@ -97,8 +98,9 @@ class QuestionList extends Component {
 
     return (
       <div>
-
-
+        <ActionCableConsumer
+        channel={{ channel: 'FeedChannel'}}
+        />
 
         {this.state.display ?
           <div>
