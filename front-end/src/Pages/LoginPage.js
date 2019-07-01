@@ -38,7 +38,7 @@ handleChange = (event) => {
       localStorage.setItem('username', data.user.username)
   })
     this.props.logIn()
-    setTimeout(() => {window.location.replace('http://localhost:3001')}, 215)
+    setTimeout(() => {window.location.replace('http://localhost:3001')}, 300)
   }
 
   render(){

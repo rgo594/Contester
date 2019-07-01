@@ -2,6 +2,18 @@ import React, { Component } from 'react';
 import { ActionCableConsumer } from 'react-actioncable-provider'
 
 class Question extends Component {
+  state = {
+    bgc: 'green'
+  }
+
+  incorrect = (e) => {
+    let answer = document.querySelector(`#${this.props.question.answer}`)
+    let correct = answer.style.backgroundColor = 'green'
+    let incorrect = e.target.style.backgroundColor = 'red'
+
+    return correct
+    return incorrect
+  }
 
   colorBtn = (e) => {
 
@@ -11,7 +23,7 @@ class Question extends Component {
       this.props.question.answer === e.target.value ?
       this.props.setScore(e)
       :
-      e.target.style.backgroundColor = 'red'
+      this.incorrect(e)
 
     const nextQuest = setTimeout(() => {
       (this.props.nextQuest(1))
@@ -21,19 +33,18 @@ class Question extends Component {
     return nextQuest
   }
 
-
-
   render() {
-    const choice = (prop, val) => {
-      return this.props.clicked ? <p><button key={prop} value={val}>{val.toUpperCase()}</button> {prop} </p> :
-      <p><button key={prop} onClick={(e) => this.colorBtn(e)} value={val}>{val.toUpperCase()}</button> {prop} </p>
-    }
 
-    console.log(this.props.counter)
+    const choice = (prop, val) => {
+      return this.props.clicked ? <p><button key={prop} value={val}>{val.toUpperCase()}</button> {prop} </p>
+      :
+      this.props.counter === 0 ? <p><button key={prop} value={val}>{val.toUpperCase()}</button> {prop} </p>
+      :
+      <p><button key={prop} id={val} onClick={(e) => this.colorBtn(e)} value={val}>{val.toUpperCase()}</button> {prop} </p>
+    }
 
     return (
       <div>
-
         <div>
           <h4>{this.props.question.description}</h4>
             {choice(this.props.question.a, "a")}

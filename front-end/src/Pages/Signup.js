@@ -42,7 +42,7 @@ handleSignup = (event) => {
   })
     .then(r => r.json())
     .then(r => console.log(r))
-    setTimeout(() => {window.location.replace('http://localhost:3001/login')}, 215)
+    setTimeout(() => {window.location.replace('http://localhost:3001/login')}, 300)
   }
 
   render(){

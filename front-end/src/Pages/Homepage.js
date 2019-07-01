@@ -12,6 +12,7 @@ class Homepage extends Component {
         <div>
           <button onClick={this.props.logOut}>Log Out</button>
           <button onClick={() => window.location.replace('http://localhost:3001/quiz')}>Quiz</button>
+          <Quiz />
         </div>
         : window.location.replace('http://localhost:3001/login')
       );

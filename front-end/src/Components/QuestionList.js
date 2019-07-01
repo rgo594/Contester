@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Question from './Question'
 import { ActionCableConsumer } from 'react-actioncable-provider'
 
+const timer = 5
+
 class QuestionList extends Component {
 
   state = {
@@ -12,7 +14,7 @@ class QuestionList extends Component {
     end: 1,
     questIndex: 1,
 
-    counter: 5,
+    counter: timer,
     score: 0,
     p2Score: 2,
 
@@ -52,7 +54,7 @@ class QuestionList extends Component {
     this.setState({
       start: this.state.start + index,
       end: this.state.end + index,
-      counter: 5,
+      counter: timer,
       questIndex: this.state.questIndex + 1,
       display: toggleDisplay,
       clicked: false
@@ -82,7 +84,7 @@ class QuestionList extends Component {
     this.setState({
       start: 0,
       end: 1,
-      counter: 5,
+      counter: timer,
       score: 0,
       filteredQuestions: [1],
       questIndex: 1,
@@ -126,12 +128,12 @@ class QuestionList extends Component {
 
     const showScore = this.state.questIndex > this.state.filteredQuestions.length ?
       <div>
-        <h1>Final Score:{this.state.score} </h1>
+        <h1>Final Score:{this.state.score}/{this.state.filteredQuestions.length} </h1>
         <button onClick={() => this.replay()}>Play again?</button>
       </div>
       :
       this.else = ''
-//
+
     return (
       <div>
 
