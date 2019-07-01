@@ -38,7 +38,7 @@ handleChange = (event) => {
       localStorage.setItem('username', data.user.username)
   })
     this.props.logIn()
-    window.location.replace('http://localhost:3001')
+    setTimeout(() => {window.location.replace('http://localhost:3001')}, 215)
   }
 
   render(){
@@ -53,7 +53,7 @@ handleChange = (event) => {
             <input type="password" name="password" onChange={this.handleChange} /></p>
             <input type="submit" value="Log In" />
           </form>
-        <button as="a" onClick={() => window.location.replace('http://localhost:3001/signup')}>Signup</button>
+        <button onClick={() => window.location.replace('http://localhost:3001/signup')}>Signup</button>
       </div>
       )
     }

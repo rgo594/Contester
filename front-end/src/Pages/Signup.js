@@ -42,8 +42,7 @@ handleSignup = (event) => {
   })
     .then(r => r.json())
     .then(r => console.log(r))
-    alert(`Welcome ${this.state.username}`)
-    window.location.replace('http://localhost:3001/login')
+    setTimeout(() => {window.location.replace('http://localhost:3001/login')}, 215)
   }
 
   render(){

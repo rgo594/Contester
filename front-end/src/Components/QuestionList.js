@@ -6,17 +6,21 @@ class QuestionList extends Component {
 
   state = {
     questions: [],
+    filteredQuestions: [1],
+
     start: 0,
     end: 1,
+    questIndex: 1,
+
     counter: 5,
     score: 0,
-    filteredQuestions: [1],
-    questIndex: 1,
+    p2Score: 2,
+
     display: false,
     btnDisplay: true
   }
 
-  else = 'xf'
+  else = ''
 
   componentDidMount(){
     fetch('http://localhost:3000/questions')
@@ -29,14 +33,21 @@ class QuestionList extends Component {
         (this.state.counter) > 0 ?
           (this.setState({ counter: --this.state.counter }))
           :
+          setTimeout(() => {
           (this.nextQuest(1))
+          }, 500)
+          // this.nextQuest(1)
       : this.else = ''
     }, 1000)
   }
 
+
+
   nextQuest = (index) => {
+
     const toggleDisplay = this.state.questIndex > this.state.filteredQuestions.length - 1 ?
     !this.state.display : this.state.display
+
 
     this.setState({
       start: this.state.start + index,
@@ -54,8 +65,6 @@ class QuestionList extends Component {
   }
 
   filterQuestions = (input_id) => {
-    fetch('http://localhost:3000/broadcast')
-
     this.setState({
       display: true,
       btnDisplay: false,
@@ -63,6 +72,7 @@ class QuestionList extends Component {
        return question.quiz_id === input_id
       })
     })
+
   }
 
   replay = () => {
@@ -79,6 +89,16 @@ class QuestionList extends Component {
   }
 
   render() {
+
+    const broadcast = () => {
+      fetch('http://localhost:3000/broadcast')
+    }
+
+    const broadScore = () => {
+      this.setState({
+        score: this.state.score + 1
+      })
+    }
 
     const question = this.state.filteredQuestions.slice(this.state.start, this.state.end).map(q => {
       return <Question
@@ -99,15 +119,9 @@ class QuestionList extends Component {
       </div>
       :
       this.else = ''
-
+//
     return (
       <div>
-      <ActionCableConsumer
-        channel={{ channel: 'FeedChannel'}}
-        onReceived={(cool) => {
-          console.log('moo', cool)
-        }}
-      />
 
         {this.state.display ?
           <div>
@@ -129,9 +143,12 @@ class QuestionList extends Component {
       </div>
     );
   }
-
 }
 
 export default QuestionList;
 
 // {setTimeout(() => console.log('coo'), 1000)}
+// <ActionCableConsumer
+//   channel={{ channel: 'FeedChannel'}}
+//   onReceived={ () => { broadScore() } }
+//   />
