@@ -17,7 +17,9 @@ class QuestionList extends Component {
     p2Score: 2,
 
     display: false,
-    btnDisplay: true
+    btnDisplay: true,
+
+    clicked: false
   }
 
   else = ''
@@ -42,8 +44,6 @@ class QuestionList extends Component {
     }, 1000)
   }
 
-
-
   nextQuest = (index) => {
 
     const toggleDisplay = this.state.questIndex > this.state.filteredQuestions.length - 1 ?
@@ -54,7 +54,8 @@ class QuestionList extends Component {
       end: this.state.end + index,
       counter: 5,
       questIndex: this.state.questIndex + 1,
-      display: toggleDisplay
+      display: toggleDisplay,
+      clicked: false
      })
 
   }
@@ -90,6 +91,12 @@ class QuestionList extends Component {
     })
   }
 
+  setClicked = (x) => {
+    this.setState({
+      clicked: x
+    })
+  }
+
   render() {
 
     const broadcast = () => {
@@ -107,7 +114,10 @@ class QuestionList extends Component {
         counter={this.state.counter}
         setScore={this.setScore}
         question={q}
-        nextQuest={this.nextQuest} />
+        nextQuest={this.nextQuest}
+        setClicked={this.setClicked}
+        clicked={this.state.clicked}
+        />
     })
 
     const postGameDisplay = () => {

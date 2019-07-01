@@ -3,8 +3,9 @@ import { ActionCableConsumer } from 'react-actioncable-provider'
 
 class Question extends Component {
 
-
   colorBtn = (e) => {
+
+    this.props.setClicked(true)
 
     const interval =
       this.props.question.answer === e.target.value ?
@@ -23,6 +24,10 @@ class Question extends Component {
 
 
   render() {
+    const choice = (prop, val) => {
+      return this.props.clicked ? <p><button key={prop} value={val}>{val.toUpperCase()}</button> {prop} </p> :
+      <p><button key={prop} onClick={(e) => this.colorBtn(e)} value={val}>{val.toUpperCase()}</button> {prop} </p>
+    }
 
     console.log(this.props.counter)
 
@@ -31,10 +36,10 @@ class Question extends Component {
 
         <div>
           <h4>{this.props.question.description}</h4>
-            <p><button key={this.props.question.a} onClick={(e) => this.colorBtn(e)} value="a">A</button> {this.props.question.a} </p>
-            <p><button key={this.props.question.b} onClick={(e) => this.colorBtn(e)} value="b">B</button> {this.props.question.b} </p>
-            <p><button key={this.props.question.c} onClick={(e) => this.colorBtn(e)} value="c">C</button> {this.props.question.c} </p>
-            <p><button key={this.props.question.d} onClick={(e) => this.colorBtn(e)} value="d">D</button> {this.props.question.d} </p>
+            {choice(this.props.question.a, "a")}
+            {choice(this.props.question.b, "b")}
+            {choice(this.props.question.c, "c")}
+            {choice(this.props.question.d, "d")}
         </div>
 
       </div>
