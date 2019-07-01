@@ -33,10 +33,11 @@ class QuestionList extends Component {
         (this.state.counter) > 0 ?
           (this.setState({ counter: --this.state.counter }))
           :
-          setTimeout(() => {
-          (this.nextQuest(1))
-          }, 500)
-          // this.nextQuest(1)
+          this.nextQuest(1)
+        //   setTimeout(() => {
+        //   (this.nextQuest(1))
+        // }, 1000)
+
       : this.else = ''
     }, 1000)
   }
@@ -48,7 +49,6 @@ class QuestionList extends Component {
     const toggleDisplay = this.state.questIndex > this.state.filteredQuestions.length - 1 ?
     !this.state.display : this.state.display
 
-
     this.setState({
       start: this.state.start + index,
       end: this.state.end + index,
@@ -56,12 +56,14 @@ class QuestionList extends Component {
       questIndex: this.state.questIndex + 1,
       display: toggleDisplay
      })
+
   }
 
-  setScore = () => {
+  setScore = (x) => {
     this.setState({
       score: this.state.score + 1
     })
+    x.target.style.backgroundColor = 'green'
   }
 
   filterQuestions = (input_id) => {
