@@ -15,6 +15,15 @@ class Question extends Component {
     return incorrect
   }
 
+  timeout = (prop, val) => {
+    let answer = document.querySelector(`#${this.props.question.answer}`)
+    let correct = answer.style.backgroundColor = 'green'
+
+
+    return <p><button key={prop} value={val}>{val.toUpperCase()}</button> {prop} </p>
+    return correct
+  }
+
   colorBtn = (e) => {
 
     this.props.setClicked(true)
@@ -38,7 +47,7 @@ class Question extends Component {
     const choice = (prop, val) => {
       return this.props.clicked ? <p><button key={prop} value={val}>{val.toUpperCase()}</button> {prop} </p>
       :
-      this.props.counter === 0 ? <p><button key={prop} value={val}>{val.toUpperCase()}</button> {prop} </p>
+      this.props.counter === 0 ? this.timeout(prop, val)
       :
       <p><button key={prop} id={val} onClick={(e) => this.colorBtn(e)} value={val}>{val.toUpperCase()}</button> {prop} </p>
     }
