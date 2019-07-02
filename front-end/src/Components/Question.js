@@ -61,9 +61,7 @@ class Question extends Component {
             {choice(this.props.question.c, "c")}
             {choice(this.props.question.d, "d")}
         </div>
-
       </div>
-
     );
   }
 

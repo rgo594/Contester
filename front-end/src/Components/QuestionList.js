@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Question from './Question'
 import { ActionCableConsumer } from 'react-actioncable-provider'
+import { Button } from 'semantic-ui-react'
 
 const timer = 5
 
@@ -29,7 +30,9 @@ class QuestionList extends Component {
   componentDidMount(){
     fetch('http://localhost:3000/questions')
       .then(response => response.json())
-      .then(x => this.setState({questions: x.questions }));
+      .then(q => this.setState({
+        questions: q.questions
+      }));
 
 
     setInterval(() => {
@@ -38,9 +41,6 @@ class QuestionList extends Component {
           (this.setState({ counter: --this.state.counter }))
           :
           this.nextQuest(1)
-        //   setTimeout(() => {
-        //   (this.nextQuest(1))
-        // }, 1000)
 
       : this.else = ''
     }, 1000)
@@ -70,6 +70,7 @@ class QuestionList extends Component {
   }
 
   filterQuestions = (input_id) => {
+
     this.setState({
       display: true,
       btnDisplay: false,
@@ -77,8 +78,8 @@ class QuestionList extends Component {
        return question.quiz_id === input_id
       })
     })
-
   }
+
 
   replay = () => {
     this.setState({
@@ -101,6 +102,9 @@ class QuestionList extends Component {
 
   render() {
 
+    let yeet = this.props.quizzes.find(quiz => quiz.subject)
+    console.log(yeet)
+
     const broadcast = () => {
       fetch('http://localhost:3000/broadcast')
     }
@@ -110,6 +114,7 @@ class QuestionList extends Component {
         score: this.state.score + 1
       })
     }
+
 
     const question = this.state.filteredQuestions.slice(this.state.start, this.state.end).map(q => {
       return <Question
@@ -132,11 +137,10 @@ class QuestionList extends Component {
         <button onClick={() => this.replay()}>Play again?</button>
       </div>
       :
-      this.else = ''
+      ''
 
     return (
       <div>
-
         {this.state.display ?
           <div>
             <h1>Score: {this.state.score} </h1>
@@ -147,10 +151,18 @@ class QuestionList extends Component {
           : this.state.btnDisplay ?
           <div>
             <h4>Choose a category</h4>
-            <button onClick={() => {  this.filterQuestions(1) } }>SAT</button>
-            <button onClick={() => {  this.filterQuestions(2) } }>Series 7</button>
+            {localStorage.exam == "SAT" ?
+            <div class="ui massive buttons">
+              <button class="ui button" onClick={() => { this.filterQuestions(1) } }>SAT English 1</button>
+              <button class="ui button" onClick={() => { this.filterQuestions(2) } }>SAT English 2</button>
+              <button class="ui button" onClick={() => { this.filterQuestions(3) } }>SAT Math 1</button>
+            </div>
+            : localStorage.exam == "Series 7" ?
+            <button onClick={() => { this.filterQuestions(4) } }>Series 7</button>
+            : ''
+            }
           </div>
-          : console.log('showscore shouldve been here')
+          : ''
         }
 
         {showScore}

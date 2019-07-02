@@ -5,13 +5,20 @@ import Quiz from './Quiz'
 
 class Homepage extends Component {
 
+  exam = () => {
+    fetch('http://localhost:3000/exam')
+    .then(response => response.json())
+    .then(console.log)
+  }
+
   render(){
+
     console.log(this.props.test)
     return (
       localStorage.token ?
         <div>
           <button onClick={this.props.logOut}>Log Out</button>
-          <button onClick={() => window.location.replace('http://localhost:3001/quiz')}>Quiz</button>
+          
           <Quiz />
         </div>
         : window.location.replace('http://localhost:3001/login')

@@ -10,6 +10,13 @@ import Quiz from './Pages/Quiz'
 class App extends React.Component {
   state = {
     loggedIn: false
+
+  }
+
+  disp = () => {
+    this.setState({
+      disp: true
+    })
   }
 
   logIn = () => {
@@ -30,6 +37,7 @@ class App extends React.Component {
     // <Route exact path ="/quiz" render={() => <Quiz />}/> : window.location.replace('http://localhost:3001/login')
 
     return (
+
         <React.Fragment>
             <Router>
               <Switch>

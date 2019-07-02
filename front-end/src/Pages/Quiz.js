@@ -4,14 +4,17 @@ import { ActionCableConsumer } from 'react-actioncable-provider'
 
 class Quiz extends Component {
   state = {
-    disp: false
+    quizzes: []
   }
 
-  work = () => {
-    this.setState({
-      disp: true
-    })
-  }
+  componentDidMount(){
+    fetch('http://localhost:3000/quizzes')
+      .then(response => response.json())
+      .then(x => this.setState({
+        quizzes: x.quizzes.filter(quiz => {
+       return quiz.subject === localStorage.exam})
+      })
+    )}
 
   render() {
     // const broadcast = () => {
@@ -23,13 +26,13 @@ class Quiz extends Component {
     //    <h1>please</h1> : <p></p>
     //
     // }
-
+    // console.log(this.state.quizzes)
     return (
+
+
       localStorage.token ?
         <div>
-
-          <button onClick={() => window.location.replace('http://localhost:3001')}>Home</button>
-            <QuestionList />
+            <QuestionList quizzes={this.state.quizzes}/>
         </div>
       : window.location.replace('http://localhost:3001/login')
     );
@@ -40,7 +43,7 @@ class Quiz extends Component {
 
 // <ActionCableConsumer
 //   channel={{ channel: 'FeedChannel'}}
-//   onReceived={() => { this.work()}}
+//   onReceived={() => { this.disp()}}
 //   />
 //
 //   {testBroadcast()}

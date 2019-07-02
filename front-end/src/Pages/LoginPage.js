@@ -1,12 +1,13 @@
 import React from 'react';
 import 'semantic-ui-css/semantic.min.css';
+// import { Button, Form, Segment, Message } from 'semantic-ui-react'
 
 class LoginPage extends React.Component{
   state={
-  username: '',
-  password: '',
-  token: ''
-}
+    username: '',
+    password: '',
+    token: ''
+  }
 
 handleChange = (event) => {
   this.setState({
@@ -36,6 +37,7 @@ handleChange = (event) => {
       localStorage.setItem('token', data.jwt)
       localStorage.setItem('user_id', data.user.id)
       localStorage.setItem('username', data.user.username)
+      localStorage.setItem('exam', data.exam)
   })
     this.props.logIn()
     setTimeout(() => {window.location.replace('http://localhost:3001')}, 300)

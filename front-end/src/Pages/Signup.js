@@ -59,6 +59,7 @@ handleSignup = (event) => {
         <select  onChange={(e) => this.handleSelect(e.target.value)}>
           <option>Select Test</option>
           <option name="exam" value="SAT">SAT</option>
+          <option name="exam" value="Series 7">Series 7</option>
         </select>
 
         <input type="submit" value="Signup" />
