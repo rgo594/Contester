@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { ActionCableConsumer } from 'react-actioncable-provider'
+import { Segment } from 'semantic-ui-react'
 
 class Question extends Component {
   state = {
@@ -20,7 +21,7 @@ class Question extends Component {
     let correct = answer.style.backgroundColor = 'green'
 
 
-    return <p><button key={prop} value={val}>{val.toUpperCase()}</button> {prop} </p>
+    return <p><button class="ui fluid huge toggle button" key={prop} value={val}>{prop}</button></p>
     return correct
   }
 
@@ -45,17 +46,17 @@ class Question extends Component {
   render() {
 
     const choice = (prop, val) => {
-      return this.props.clicked ? <p><button key={prop} value={val}>{val.toUpperCase()}</button> {prop} </p>
+      return this.props.clicked ? <p><button class="ui fluid huge toggle button" key={prop} value={val}>{prop}</button></p>
       :
       this.props.counter === 0 ? this.timeout(prop, val)
       :
-      <p><button key={prop} id={val} onClick={(e) => this.colorBtn(e)} value={val}>{val.toUpperCase()}</button> {prop} </p>
+      <p><button class="ui fluid huge toggle button" key={prop} id={val} onClick={(e) => this.colorBtn(e)} value={val}>{prop}</button></p>
     }
 
     return (
       <div>
         <div>
-          <h4>{this.props.question.description}</h4>
+          <h4 class="ui fluid segment">{this.props.question.description}</h4>
             {choice(this.props.question.a, "a")}
             {choice(this.props.question.b, "b")}
             {choice(this.props.question.c, "c")}

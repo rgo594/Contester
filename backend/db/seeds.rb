@@ -118,7 +118,7 @@ Question.create :description => 'If a = −2, then a + a^2 − a^3 + a^4 − a^5
 
   Question.create :description => 'In a 28-student class, the ratio of boys to girls is 3:4. How many girls are there in the class?',
     :a => "4",
-    :b => "9",
+    :b => "6",
     :c => "12",
     :d => "16",
     :answer => "d",
@@ -188,7 +188,7 @@ Question.create :description => 'If a = −2, then a + a^2 − a^3 + a^4 − a^5
     :answer => "d",
     :quiz_id => 5
 
-  Question.create :description => "Jeff is allergic to?", 
+  Question.create :description => "Jeff is allergic to?",
     :a => "shell fish", :b => "swimmy fish",
     :c => "cepholopods", :d => "sadness",
     :answer => "b",

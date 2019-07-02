@@ -102,9 +102,6 @@ class QuestionList extends Component {
 
   render() {
 
-    let yeet = this.props.quizzes.find(quiz => quiz.subject)
-    console.log(yeet)
-
     const broadcast = () => {
       fetch('http://localhost:3000/broadcast')
     }
@@ -142,7 +139,7 @@ class QuestionList extends Component {
     return (
       <div>
         {this.state.display ?
-          <div>
+          <div class="ui center aligned text container">
             <h1>Score: {this.state.score} </h1>
             <h3>:{this.state.counter}</h3>
             <p>question {this.state.questIndex}/{this.state.filteredQuestions.length}</p>
@@ -152,14 +149,19 @@ class QuestionList extends Component {
           <div>
             <h4>Choose a category</h4>
             {localStorage.exam == "SAT" ?
-            <div class="ui massive buttons">
-              <button class="ui button" onClick={() => { this.filterQuestions(1) } }>SAT English 1</button>
-              <button class="ui button" onClick={() => { this.filterQuestions(2) } }>SAT English 2</button>
-              <button class="ui button" onClick={() => { this.filterQuestions(3) } }>SAT Math 1</button>
+            <div>
+              <div class="ui vertical massive buttons">
+                <button class="ui button" onClick={() => { this.filterQuestions(1) } }>SAT English 1</button>
+                <button class="ui button" onClick={() => { this.filterQuestions(2) } }>SAT English 2</button>
+              </div>
+              <div class="ui vertical massive buttons">
+                <button class="ui button" onClick={() => { this.filterQuestions(3) } }>SAT Math 1</button>
+              </div>
             </div>
             : localStorage.exam == "Series 7" ?
             <button onClick={() => { this.filterQuestions(4) } }>Series 7</button>
-            : ''
+            :
+            <button onClick={() => { this.filterQuestions(5) } }>???</button>
             }
           </div>
           : ''
