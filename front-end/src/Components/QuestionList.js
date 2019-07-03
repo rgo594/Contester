@@ -25,6 +25,10 @@ class QuestionList extends Component {
     clicked: false
   }
 
+  // html {
+  //   font-size: 20px;
+  // }
+
   else = ''
 
   componentDidMount(){
@@ -130,8 +134,8 @@ class QuestionList extends Component {
 
     const showScore = this.state.questIndex > this.state.filteredQuestions.length ?
       <div>
-        <h1>Final Score:{this.state.score}/{this.state.filteredQuestions.length} </h1>
-        <button onClick={() => this.replay()}>Play again?</button>
+        <h1 style={{fontSize: 40}}>Final Score:{this.state.score}/{this.state.filteredQuestions.length} </h1>
+        <button style={{fontSize: 20}} class="ui toggle button" onClick={() => this.replay()}>Play again?</button>
       </div>
       :
       ''
@@ -140,20 +144,23 @@ class QuestionList extends Component {
       <div>
         {this.state.display ?
           <div class="ui center aligned text container">
-            <h1>Score: {this.state.score} </h1>
-            <h3>:{this.state.counter}</h3>
-            <p>question {this.state.questIndex}/{this.state.filteredQuestions.length}</p>
+            <h1 style={{fontSize: 40}}>Score: {this.state.score} </h1>
+            <h3 style={{fontSize: 30}}>:{this.state.counter}</h3>
+            <p style={{fontSize: 20}}>question {this.state.questIndex}/{this.state.filteredQuestions.length}</p>
             {question}
           </div>
           : this.state.btnDisplay ?
           <div>
-            <h4>Choose a category</h4>
+
+            <h4 style={{fontSize: 40}}>Choose a category</h4>
+
             {localStorage.exam == "SAT" ?
-            <div>
+            <div class="ui center aligned text container">
               <div class="ui vertical massive buttons">
                 <button class="ui button" onClick={() => { this.filterQuestions(1) } }>SAT English 1</button>
                 <button class="ui button" onClick={() => { this.filterQuestions(2) } }>SAT English 2</button>
               </div>
+
               <div class="ui vertical massive buttons">
                 <button class="ui button" onClick={() => { this.filterQuestions(3) } }>SAT Math 1</button>
               </div>
@@ -167,7 +174,7 @@ class QuestionList extends Component {
           : ''
         }
 
-        {showScore}
+        <div class="ui center aligned text container">{showScore}</div>
       </div>
     );
   }
