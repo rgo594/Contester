@@ -15,7 +15,7 @@ class Homepage extends Component {
 
     console.log(this.props.test)
     return (
-      localStorage.token ?
+      localStorage.loggedIn ?
         <div class="ui center aligned text container">
           <button class="ui button" onClick={this.props.logOut}>Log Out</button>
 

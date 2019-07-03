@@ -30,7 +30,7 @@ class Quiz extends Component {
     return (
 
 
-      localStorage.token ?
+      localStorage.loggedIn ?
         <div>
             <QuestionList quizzes={this.state.quizzes}/>
         </div>
