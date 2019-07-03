@@ -43,7 +43,6 @@ class Profile extends Component {
     })
       .then(r => r.json())
       .then(r => console.log(r))
-      localStorage.clear()
       setTimeout(() => {window.location.replace('http://localhost:3001/login')}, 300)
     }
 
@@ -85,8 +84,11 @@ class Profile extends Component {
                       </div>
 
                     </div>
-                    <input class="ui submit button" type="submit" value="Save Changes" />
-                    <button class="ui submit button" onClick={() => window.location.replace('http://localhost:3001')}>Homepage</button>
+                      <input class="ui submit button" type="submit" value="Save Changes" />
+                      <div><br></br></div>
+                    <div>
+                      <button class="ui submit button" onClick={() => window.location.replace('http://localhost:3001')}>Homepage</button>
+                    </div>
                   </div>
 
               </form>
@@ -102,7 +104,7 @@ class Profile extends Component {
       </div>
 
       :
-      <h1>Need to log in</h1>†
+      <h1>Need to log in</h1>
     );
   }
 
