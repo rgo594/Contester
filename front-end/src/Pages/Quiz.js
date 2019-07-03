@@ -8,6 +8,7 @@ class Quiz extends Component {
   }
 
   componentDidMount(){
+    console.log(`http://localhost:3000/users/${localStorage.user_id}`)
     fetch('http://localhost:3000/quizzes')
       .then(response => response.json())
       .then(x => this.setState({

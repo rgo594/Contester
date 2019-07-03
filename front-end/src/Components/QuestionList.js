@@ -3,7 +3,7 @@ import Question from './Question'
 import { ActionCableConsumer } from 'react-actioncable-provider'
 import { Button } from 'semantic-ui-react'
 
-const timer = 5
+const timer = 10
 
 class QuestionList extends Component {
 
@@ -152,12 +152,12 @@ class QuestionList extends Component {
           : this.state.btnDisplay ?
           <div>
 
-            <h4 style={{fontSize: 40}}>Choose a category</h4>
-
             {localStorage.exam == "SAT" ?
             <div class="ui center aligned text container">
+            <h4 style={{fontSize: 40}}>Choose a category</h4>
               <div class="ui vertical massive buttons">
                 <button class="ui button" onClick={() => { this.filterQuestions(1) } }>SAT English 1</button>
+
                 <button class="ui button" onClick={() => { this.filterQuestions(2) } }>SAT English 2</button>
               </div>
 
@@ -166,9 +166,9 @@ class QuestionList extends Component {
               </div>
             </div>
             : localStorage.exam == "Series 7" ?
-            <button onClick={() => { this.filterQuestions(4) } }>Series 7</button>
+            <button class="ui massive button" onClick={() => { this.filterQuestions(4) } }>Series 7</button>
             :
-            <button onClick={() => { this.filterQuestions(5) } }>???</button>
+            <button class="ui massive button"onClick={() => { this.filterQuestions(5) } }>???</button>
             }
           </div>
           : ''
