@@ -6,24 +6,30 @@ import Homepage from './Pages/Homepage'
 import LoginPage from './Pages/LoginPage'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Quiz from './Pages/Quiz'
+import Profile from './Pages/Profile.js'
 
 class App extends React.Component {
   state = {
     loggedIn: false
+
+  }
+
+  disp = () => {
+    this.setState({
+      disp: true
+    })
   }
 
   logIn = () => {
     this.setState({
       loggedIn: true
     })
-    alert('Logged In')
   }
 
   logOut = () => {
     this.setState({
       loggedIn: false
     })
-    alert('Logged Out')
     localStorage.clear()
   }
 
@@ -33,14 +39,15 @@ class App extends React.Component {
 
     return (
         <React.Fragment>
-            <Router>
-              <Switch>
-                <Route path ="/login" render={() => <LoginPage loggedIn={this.state.loggedIn} logOut={this.logOut} logIn={this.logIn} />}/>
-                <Route path ="/signup" component={Signup}/>
-                <Route exact path ="/" render={() => <Homepage logOut={this.logOut}/>}/>
-                <Route exact path ="/quiz" render={() => <Quiz />}/>
-              </Switch>
-            </Router>
+          <Router>
+            <Switch>
+              <Route path ="/login" render={() => <LoginPage loggedIn={this.state.loggedIn} logOut={this.logOut} logIn={this.logIn} />}/>
+              <Route path ="/signup" component={Signup}/>
+              <Route exact path ="/" render={() => <Homepage logOut={this.logOut}/>}/>
+              <Route exact path ="/quiz" render={() => <Quiz />}/>
+              <Route exact path ="/profile" render={() => <Profile />}/>
+            </Switch>
+          </Router>
         </React.Fragment>
       );
     }

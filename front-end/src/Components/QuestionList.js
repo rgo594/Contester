@@ -1,24 +1,42 @@
 import React, { Component } from 'react';
 import Question from './Question'
+import { ActionCableConsumer } from 'react-actioncable-provider'
+import { Button } from 'semantic-ui-react'
+
+const timer = 10
 
 class QuestionList extends Component {
 
   state = {
     questions: [],
+    filteredQuestions: [1],
+
     start: 0,
     end: 1,
-    counter: 5,
-    score: 0,
-    filteredQuestions: [1],
     questIndex: 1,
+
+    counter: timer,
+    score: 0,
+    p2Score: 2,
+
     display: false,
-    btnDisplay: true
+    btnDisplay: true,
+
+    clicked: false
   }
 
-  componentDidMount() {
+  // html {
+  //   font-size: 20px;
+  // }
+
+  else = ''
+
+  componentDidMount(){
     fetch('http://localhost:3000/questions')
       .then(response => response.json())
-      .then(x => this.setState({questions: x.questions }));
+      .then(q => this.setState({
+        questions: q.questions
+      }));
 
 
     setInterval(() => {
@@ -26,31 +44,37 @@ class QuestionList extends Component {
         (this.state.counter) > 0 ?
           (this.setState({ counter: --this.state.counter }))
           :
-          (this.nextQuest(1))
-      : console.log('')
+          this.nextQuest(1)
+
+      : this.else = ''
     }, 1000)
   }
 
   nextQuest = (index) => {
+
     const toggleDisplay = this.state.questIndex > this.state.filteredQuestions.length - 1 ?
     !this.state.display : this.state.display
 
     this.setState({
       start: this.state.start + index,
       end: this.state.end + index,
-      counter: 5,
+      counter: timer,
       questIndex: this.state.questIndex + 1,
-      display: toggleDisplay
+      display: toggleDisplay,
+      clicked: false
      })
+
   }
 
-  setScore = () => {
+  setScore = (x) => {
     this.setState({
       score: this.state.score + 1
     })
+    x.target.style.backgroundColor = 'green'
   }
 
   filterQuestions = (input_id) => {
+
     this.setState({
       display: true,
       btnDisplay: false,
@@ -60,11 +84,12 @@ class QuestionList extends Component {
     })
   }
 
+
   replay = () => {
     this.setState({
       start: 0,
       end: 1,
-      counter: 5,
+      counter: timer,
       score: 0,
       filteredQuestions: [1],
       questIndex: 1,
@@ -73,14 +98,34 @@ class QuestionList extends Component {
     })
   }
 
+  setClicked = (x) => {
+    this.setState({
+      clicked: x
+    })
+  }
+
   render() {
+
+    const broadcast = () => {
+      fetch('http://localhost:3000/broadcast')
+    }
+
+    const broadScore = () => {
+      this.setState({
+        score: this.state.score + 1
+      })
+    }
+
 
     const question = this.state.filteredQuestions.slice(this.state.start, this.state.end).map(q => {
       return <Question
         counter={this.state.counter}
         setScore={this.setScore}
         question={q}
-        nextQuest={this.nextQuest} />
+        nextQuest={this.nextQuest}
+        setClicked={this.setClicked}
+        clicked={this.state.clicked}
+        />
     })
 
     const postGameDisplay = () => {
@@ -89,40 +134,56 @@ class QuestionList extends Component {
 
     const showScore = this.state.questIndex > this.state.filteredQuestions.length ?
       <div>
-        <h1>Final Score:{this.state.score} </h1>
-        <button onClick={() => this.replay()}>Play again?</button>
+        <h1 style={{fontSize: 40}}>Final Score:{this.state.score}/{this.state.filteredQuestions.length} </h1>
+        <button style={{fontSize: 20}} class="ui toggle button" onClick={() => this.replay()}>Play again?</button>
       </div>
       :
-      console.log('')
+      ''
 
     return (
       <div>
-
-
-
         {this.state.display ?
-          <div>
-            <h1>Score: {this.state.score} </h1>
-            <h3>:{this.state.counter}</h3>
-            <p>question {this.state.questIndex}/{this.state.filteredQuestions.length}</p>
+          <div class="ui center aligned text container">
+            <h1 style={{fontSize: 40}}>Score: {this.state.score} </h1>
+            <h3 style={{fontSize: 30}}>:{this.state.counter}</h3>
+            <p style={{fontSize: 20}}>question {this.state.questIndex}/{this.state.filteredQuestions.length}</p>
             {question}
           </div>
           : this.state.btnDisplay ?
           <div>
-            <h4>Choose a category</h4>
-            <button onClick={() => {  this.filterQuestions(1) } }>SAT</button>
-            <button onClick={() => {  this.filterQuestions(2) } }>Series 7</button>
+
+            {localStorage.exam == "SAT" ?
+            <div class="ui center aligned text container">
+            <h4 style={{fontSize: 40}}>Choose a category</h4>
+              <div class="ui vertical massive buttons">
+                <button class="ui button" onClick={() => { this.filterQuestions(1) } }>SAT English 1</button>
+
+                <button class="ui button" onClick={() => { this.filterQuestions(2) } }>SAT English 2</button>
+              </div>
+
+              <div class="ui vertical massive buttons">
+                <button class="ui button" onClick={() => { this.filterQuestions(3) } }>SAT Math 1</button>
+              </div>
+            </div>
+            : localStorage.exam == "Series 7" ?
+            <button class="ui massive button" onClick={() => { this.filterQuestions(4) } }>Series 7</button>
+            :
+            <button class="ui massive button"onClick={() => { this.filterQuestions(5) } }>???</button>
+            }
           </div>
-          : console.log('showscore shouldve been here')
+          : ''
         }
 
-        {showScore}
+        <div class="ui center aligned text container">{showScore}</div>
       </div>
     );
   }
-
 }
 
 export default QuestionList;
 
 // {setTimeout(() => console.log('coo'), 1000)}
+// <ActionCableConsumer
+//   channel={{ channel: 'FeedChannel'}}
+//   onReceived={ () => { broadScore() } }
+//   />
