@@ -11,6 +11,7 @@ class Homepage extends Component {
         <div class="ui center aligned text container">
             <button class="ui button" onClick={() => {window.location.replace('http://localhost:3001/profile')}}>Edit Profile</button>
             <button class="ui button" onClick={this.props.logOut}>Log Out</button>
+            <button class="ui button" onClick={() => window.location.replace('http://localhost:3001/highScores')}>High Scores</button>
           <div>
           <br></br>
           </div>

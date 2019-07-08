@@ -15,12 +15,14 @@ class HighScoresPage extends Component {
 
   render() {
     const highScores = this.state.allScores.high_scores.map(n => {
-      return <HighScores username={n.username}/>
+      return <HighScores score={n}/>
     })
     console.log(this.state.allScores.high_scores)
 
     return (
-      <div>High Scores
+      <div class="ui center aligned text container">
+      <button class="ui button" onClick={() => window.location.replace('http://localhost:3001')}>Home</button>
+        <h1>High Scores</h1>
         {highScores}
       </div>
     );
