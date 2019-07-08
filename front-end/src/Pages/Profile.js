@@ -2,12 +2,23 @@ import React, { Component } from 'react';
 
 class Profile extends Component {
   state = {
-    display: true,
+    display: false,
     username: '',
     password: '',
     avatar: '',
     exam: '',
-    test_date: ''
+    test_date: '',
+    score: '',
+    times_taken: ''
+  }
+
+  componentDidMount(){
+    fetch(`http://localhost:3000/high_scores/${localStorage.user_id}`)
+      .then(n => n.json())
+      .then(n => this.setState({
+        score: n.high_score.score,
+        times_taken: n.high_score.times_taken
+      }))
   }
 
   handleSelect = (name) => {
@@ -49,6 +60,7 @@ class Profile extends Component {
   render() {
     const form = this.state.display ? <div class="ui center aligned three column grid">
             <div class="column">
+
               <h1 class="ui purple image header">Edit Profile</h1>
               <form class="ui center aligned form" onSubmit={this.handleEdit}>
                   <div class="ui stacked segment">
@@ -89,18 +101,27 @@ class Profile extends Component {
                     <div>
                       <button class="ui submit button" onClick={() => window.location.replace('http://localhost:3001')}>Homepage</button>
                     </div>
-                  </div>
+                      <div><br></br></div>
+                      <button class="ui submit button" onClick={() => this.setState({display: !this.state.display})}>Hide Form</button>
+                    </div>
+                </form>
 
-              </form>
             </div>
           </div>
           :
-          ''
+          <div class="ui center aligned container">
+            <button class="ui submit button" onClick={() => this.setState({display: !this.state.display})}>Edit Profile?</button>
+            <button class="ui submit button" onClick={() => window.location.replace('http://localhost:3001')}>Homepage</button>
+            
+            <h1>{localStorage.username}</h1>
+            <h1>{this.state.times_taken} Questions Answered</h1>
+            <h1>%{(this.state.score / this.state.times_taken) * 100} Correct</h1>
+          </div>
 
     return (
       localStorage.loggedIn ?
-      <div>
-      {form}
+      <div class="ui center aligned container">
+        {form}
       </div>
       :
       <h1>Need to log in</h1>

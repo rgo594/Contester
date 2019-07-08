@@ -73,9 +73,9 @@ handleChange = (event) => {
                 </div>
 
                 </div>
-                <input onClick={() => setTimeout(() => {window.location.replace('http://localhost:3001')}, 300) } class="ui submit button" type="submit" value="Log In" />
-                <button class="ui submit button" onClick={() => window.location.replace('http://localhost:3001/signup')}>Signup</button>
-              </div>
+                  <input onClick={() => setTimeout(() => {window.location.replace('http://localhost:3001')}, 300) } class="ui submit button" type="submit" value="Log In" />
+                  <button class="ui submit button" onClick={() => window.location.replace('http://localhost:3001/signup')}>Signup</button>
+                </div>
 
           </form>
         </div>
