@@ -7,12 +7,20 @@ import LoginPage from './Pages/LoginPage'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Quiz from './Pages/Quiz'
 import Profile from './Pages/Profile.js'
+import HighScoresPage from './Pages/HighScoresPage.js'
 
 class App extends React.Component {
   state = {
-    loggedIn: false
-
+    loggedIn: false,
+    allScores: ''
   }
+
+  // componentDidMount(){
+  //   fetch(`http://localhost:3000/high_scores`)
+  //     .then(n => n.json())
+  //     .then(n => this.setState({allScores: n})
+  //     )
+  // }
 
   disp = () => {
     this.setState({
@@ -46,6 +54,7 @@ class App extends React.Component {
               <Route exact path ="/" render={() => <Homepage logOut={this.logOut}/>}/>
               <Route exact path ="/quiz" render={() => <Quiz />}/>
               <Route exact path ="/profile" render={() => <Profile />}/>
+              <Route exact path ="/highScores" render={() => <HighScoresPage/>}/>
             </Switch>
           </Router>
         </React.Fragment>
