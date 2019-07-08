@@ -16,7 +16,6 @@ class Signup extends React.Component{
   }
 
   handleChange = (event) => {
-    console.log(event.target.name)
     this.setState({
       [event.target.name]: event.target.value
     })
@@ -24,8 +23,6 @@ class Signup extends React.Component{
 
 handleSignup = (event) => {
   event.preventDefault()
-  console.log(this.state.username)
-  console.log(this.state.password)
   fetch('http://localhost:3000/users', {
     method: 'POST',
     headers: {
@@ -36,17 +33,33 @@ handleSignup = (event) => {
       user: {
         username: this.state.username,
         password: this.state.password,
-        exam: this.state.exam
+        exam: this.state.exam,
+        high_score: 1
       }
     })
   })
-    .then(r => r.json())
-    .then(r => console.log(r))
-    setTimeout(() => {window.location.replace('http://localhost:3001/login')}, 300)
+    .then(n => n.json())
+    .then(n => fetch('http://localhost:3000/high_scores', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json'
+      },
+      body: JSON.stringify({
+        high_score: {
+          username: this.state.username,
+          subject: this.state.exam,
+          user_id: n.user.id,
+          times_taken: 0
+        }
+      })
+    })
+  )
+
+    // setTimeout(() => {window.location.replace('http://localhost:3001/login')}, 300)
   }
 
   render(){
-    console.log(this.state)
     return(
       <div class="ui center aligned three column grid">
 
@@ -86,7 +99,7 @@ handleSignup = (event) => {
                   </div>
 
                 </div>
-                <input class="ui submit button" type="submit" value="Signup" />
+                <input onClick={() => setTimeout(() => {window.location.replace('http://localhost:3001/login')}, 300)} class="ui submit button" type="submit" value="Signup" />
                 <button class="ui submit button" onClick={() => window.location.replace('http://localhost:3001/login')}>Login</button>
               </div>
 

@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   has_secure_password
   has_many :lob_users
-  has_many :high_scores
+  has_one :high_score
   validates :username, presence: true, uniqueness: true
   validates :password, presence: true
 

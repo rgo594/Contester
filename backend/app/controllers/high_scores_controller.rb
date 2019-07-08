@@ -17,6 +17,9 @@ class HighScoresController < ApplicationController
   end
 
   def update
+    @high_score = HighScore.find(params[:id])
+    @high_score.update(score_params)
+    render json: { high_score: @high_score }
   end
 
   def delete
@@ -25,7 +28,7 @@ class HighScoresController < ApplicationController
   private
 
   def score_params
-    params.require(:high_score).permit(:score, :quiz, :user_id, :id)
+    params.require(:high_score).permit(:score, :username, :subject, :user_id, :id, :times_taken)
   end
 
 end

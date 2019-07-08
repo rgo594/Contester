@@ -18,11 +18,15 @@ class QuestionList extends Component {
     counter: timer,
     score: 0,
     p2Score: 2,
+    hiScore: '',
+
+    times_taken: 0,
 
     display: false,
     btnDisplay: true,
 
     clicked: false
+
   }
 
   // html {
@@ -73,14 +77,21 @@ class QuestionList extends Component {
   }
 
   filterQuestions = (input_id) => {
+    fetch(`http://localhost:3000/high_scores/${localStorage.user_id}`)
+      .then(n => n.json())
+      .then(n =>
 
     this.setState({
-      display: true,
-      btnDisplay: false,
-      filteredQuestions: this.state.questions.filter(question => {
-       return question.quiz_id === input_id
+        display: true,
+        btnDisplay: false,
+        hiScore: n.high_score.score,
+        times_taken: n.high_score.times_taken,
+        filteredQuestions: this.state.questions.filter(question => {
+         return question.quiz_id === input_id
       })
     })
+  )
+
   }
 
 
@@ -109,23 +120,24 @@ class QuestionList extends Component {
       <button style={{fontSize: 20}} class="ui toggle button" onClick={() => this.replay()}>Play again?</button>
     </div>
 
-    const coo = fetch('http://localhost:3000/high_scores', {
-        method: 'POST',
+    const highScore = fetch(`http://localhost:3000/high_scores/${localStorage.user_id}`, {
+        method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
           Accept: 'application/json'
         },
         body: JSON.stringify({
           high_score: {
-            score: this.state.score,
-            user_id: localStorage.user_id
+            subject: localStorage.exam,
+            score: this.state.score + this.state.hiScore,
+            times_taken: this.state.times_taken + this.state.filteredQuestions.length
           }
         })
       })
       .then(r => r.json())
       .then(r => console.log(r))
     return showScore
-    return coo
+    return highScore
   }
 
   render() {

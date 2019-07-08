@@ -16,7 +16,8 @@ ActiveRecord::Schema.define(version: 2019_07_08_140650) do
   enable_extension "plpgsql"
 
   create_table "high_scores", force: :cascade do |t|
-    t.string "quiz"
+    t.string "username"
+    t.string "subject"
     t.integer "score"
     t.integer "times_taken"
     t.bigint "user_id"
