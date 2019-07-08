@@ -102,7 +102,6 @@ class Profile extends Component {
       <div>
       {form}
       </div>
-
       :
       <h1>Need to log in</h1>
     );

@@ -5,7 +5,7 @@ class FeedChannel < ApplicationCable::Channel
   end
 
   def unsubscribed
-    puts "UNSUBSCRIBED! " * 3 
+    puts "UNSUBSCRIBED! " * 3
     # Any cleanup needed when channel is unsubscribed
   end
 end

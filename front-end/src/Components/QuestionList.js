@@ -63,7 +63,6 @@ class QuestionList extends Component {
       display: toggleDisplay,
       clicked: false
      })
-
   }
 
   setScore = (x) => {
@@ -104,6 +103,31 @@ class QuestionList extends Component {
     })
   }
 
+  handleScore = () => {
+    const showScore = <div>
+      <h1 style={{fontSize: 40}}>Final Score:{this.state.score}/{this.state.filteredQuestions.length} </h1>
+      <button style={{fontSize: 20}} class="ui toggle button" onClick={() => this.replay()}>Play again?</button>
+    </div>
+
+    const coo = fetch('http://localhost:3000/high_scores', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json'
+        },
+        body: JSON.stringify({
+          high_score: {
+            score: this.state.score,
+            user_id: localStorage.user_id
+          }
+        })
+      })
+      .then(r => r.json())
+      .then(r => console.log(r))
+    return showScore
+    return coo
+  }
+
   render() {
 
     const broadcast = () => {
@@ -132,16 +156,14 @@ class QuestionList extends Component {
       return <h1>Final Score: {this.state.score}</h1>
     }
 
-    const showScore = this.state.questIndex > this.state.filteredQuestions.length ?
-      <div>
-        <h1 style={{fontSize: 40}}>Final Score:{this.state.score}/{this.state.filteredQuestions.length} </h1>
-        <button style={{fontSize: 20}} class="ui toggle button" onClick={() => this.replay()}>Play again?</button>
-      </div>
+    const score = this.state.questIndex > this.state.filteredQuestions.length ?
+      this.handleScore()
       :
       ''
 
     return (
       <div>
+
         {this.state.display ?
           <div class="ui center aligned text container">
             <h1 style={{fontSize: 40}}>Score: {this.state.score} </h1>
@@ -174,7 +196,7 @@ class QuestionList extends Component {
           : ''
         }
 
-        <div class="ui center aligned text container">{showScore}</div>
+        <div class="ui center aligned text container">{score}</div>
       </div>
     );
   }
@@ -182,8 +204,9 @@ class QuestionList extends Component {
 
 export default QuestionList;
 
-// {setTimeout(() => console.log('coo'), 1000)}
 // <ActionCableConsumer
 //   channel={{ channel: 'FeedChannel'}}
 //   onReceived={ () => { broadScore() } }
 //   />
+
+// {setTimeout(() => console.log('coo'), 1000)}

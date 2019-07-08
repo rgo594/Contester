@@ -1,19 +1,19 @@
 class LobbiesController < ApplicationController
-  def index
-  end
-
-  def show
-  end
-
-  def new
-  end
 
   def create
+    lobby = Lobby.new(lobby_params)
+      if lobby.save
+        serialized_data = ActiveModelSerializers::Adapter::Json.new(
+          LobbySerializer.new(lobby)
+            ).serializable_hash
+      ActionCable.server.broadcast 'feed_channel', serialized_data
+      head :ok
+    end
   end
 
-  def update
-  end
+  private
 
-  def delete
+  def lobby_params
+    params.require(:lobby).permit(:name)
   end
 end

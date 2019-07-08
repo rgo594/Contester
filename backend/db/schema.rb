@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_27_142240) do
+ActiveRecord::Schema.define(version: 2019_07_08_140650) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "high_scores", force: :cascade do |t|
+    t.string "quiz"
+    t.integer "score"
+    t.integer "times_taken"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_high_scores_on_user_id"
+  end
 
   create_table "lob_users", force: :cascade do |t|
     t.bigint "user_id"
@@ -29,6 +39,7 @@ ActiveRecord::Schema.define(version: 2019_06_27_142240) do
     t.bigint "quiz_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
     t.index ["quiz_id"], name: "index_lobbies_on_quiz_id"
     t.index ["user_id"], name: "index_lobbies_on_user_id"
   end
@@ -64,6 +75,7 @@ ActiveRecord::Schema.define(version: 2019_06_27_142240) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "high_scores", "users"
   add_foreign_key "lob_users", "lobbies"
   add_foreign_key "lob_users", "users"
   add_foreign_key "lobbies", "quizzes"

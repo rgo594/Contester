@@ -1,6 +1,6 @@
 class QuizzesController < ApplicationController
   skip_before_action :authorized
-  
+
   def index
     @all = Quiz.all
     render json: {quizzes:@all}
