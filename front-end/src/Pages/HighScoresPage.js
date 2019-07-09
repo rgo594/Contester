@@ -4,12 +4,13 @@ import { Icon, Label, Menu, Table } from 'semantic-ui-react'
 
 class HighScoresPage extends Component {
   state = {
-    coo: []
+    coo: [],
+    exam: localStorage.exam
   }
 
   highScores = () => {
     const filteredSubjects = this.props.scores.high_scores.filter(x => {
-      return x.subject == localStorage.exam
+      return x.subject == this.state.exam
     })
 
     const filtered = filteredSubjects.filter(x => {
@@ -44,6 +45,12 @@ class HighScoresPage extends Component {
       <div>
         <div class="ui center aligned text container">
         <button class="ui button" onClick={() => window.location.replace('http://localhost:3001')}>Home</button>
+
+        <div class="ui large buttons">
+          <button class="ui button" onClick={() => { this.setState({exam: "SAT"})}}>SAT</button>
+          <button class="ui button" onClick={() => { this.setState({exam: "Series 7"})}}>Series 7</button>
+        </div>
+
           <h1>High Scores</h1>
 
           <Table celled>
