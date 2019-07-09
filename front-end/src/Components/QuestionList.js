@@ -25,7 +25,7 @@ class QuestionList extends Component {
     display: false,
     btnDisplay: true,
 
-    clicked: false
+    clicked: false,
 
   }
 
@@ -183,7 +183,7 @@ class QuestionList extends Component {
             <p style={{fontSize: 20}}>question {this.state.questIndex}/{this.state.filteredQuestions.length}</p>
             {question}
           </div>
-          
+
           : this.state.btnDisplay ?
           <div>
             <h4 style={{fontSize: 40}}>Choose a category</h4>

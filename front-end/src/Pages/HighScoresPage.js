@@ -8,7 +8,11 @@ class HighScoresPage extends Component {
   }
 
   highScores = () => {
-    const filtered = this.props.scores.high_scores.filter(x => {
+    const filteredSubjects = this.props.scores.high_scores.filter(x => {
+      return x.subject == localStorage.exam
+    })
+
+    const filtered = filteredSubjects.filter(x => {
       return x.times_taken >= 10
     })
 
