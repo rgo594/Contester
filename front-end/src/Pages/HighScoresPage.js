@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import HighScores from '../Components/HighScores.js'
+import { Icon, Label, Menu, Table } from 'semantic-ui-react'
 
 class HighScoresPage extends Component {
   state = {
     coo: []
   }
 
-  mur = () => {
+  highScores = () => {
     const filtered = this.props.scores.high_scores.filter(x => {
       return x.times_taken >= 10
     })
@@ -36,10 +37,23 @@ class HighScoresPage extends Component {
 
 
     return (
-      <div class="ui center aligned text container">
+      <div>
         <button class="ui button" onClick={() => window.location.replace('http://localhost:3001')}>Home</button>
+
+        <div class="ui center aligned text container">
         <h1>High Scores</h1>
-        {this.mur()}
+          <thead class="">
+            <tr class="">
+              <th class="">Header</th>
+              <th class="">Header</th>
+              <th class="">Header</th>
+            </tr>
+          </thead>
+          <Table celled>
+            {this.highScores()}
+          </Table>
+        </div>
+
       </div>
     );
   }

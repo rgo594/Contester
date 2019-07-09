@@ -115,7 +115,7 @@ class Profile extends Component {
 
             <h1>{localStorage.username}</h1>
             <h1>{this.state.times_taken} Questions Answered</h1>
-            <h1>%{(this.state.score / this.state.times_taken) * 100} Correct</h1>
+            <h1>{Math.round((this.state.score / this.state.times_taken) * 100)}% Correct</h1>
           </div>
 
     return (

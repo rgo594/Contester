@@ -183,15 +183,17 @@ class QuestionList extends Component {
             <p style={{fontSize: 20}}>question {this.state.questIndex}/{this.state.filteredQuestions.length}</p>
             {question}
           </div>
+          
           : this.state.btnDisplay ?
           <div>
             <h4 style={{fontSize: 40}}>Choose a category</h4>
+            <div class="column"><br></br></div>
             {localStorage.exam == "SAT" ?
             <div class="ui center aligned grid">
 
                 <div class="three wide column">
                     <button class="ui massive green button" onClick={() => { this.filterQuestions(1) } }>English 1</button>
-                    <div class="column"><br></br></div>
+                      <div class="column"><br></br></div>
                     <button class="ui massive green button" onClick={() => { this.filterQuestions(2) } }>English 2</button>
                 </div>
 
@@ -200,7 +202,11 @@ class QuestionList extends Component {
               </div>
             </div>
             : localStorage.exam == "Series 7" ?
-            <button class="ui massive button" onClick={() => { this.filterQuestions(4) } }>Series 7</button>
+            <div class="ui center aligned grid">
+              <div class="three wide column">
+                <button class="ui massive button" onClick={() => { this.filterQuestions(4) } }>Series 7</button>
+              </div>
+            </div>
             :
             <button class="ui massive button"onClick={() => { this.filterQuestions(5) } }>???</button>
             }
