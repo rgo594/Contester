@@ -7,11 +7,13 @@ class HighScoresPage extends Component {
   }
 
   mur = () => {
-    // const meh = this.props.scores.high_scores.map(x => {
-    //   return x.score / x.times_taken
-    // }).sort()
+    const filtered = this.props.scores.high_scores.filter(x => {
+      return x.times_taken >= 10
+    })
 
-    const sorted = this.props.scores.high_scores.sort((a, b) => (a.score / a.times_taken < b.score / b.times_taken) ? 1 : -1)
+
+    const sorted = filtered.sort((a, b) =>
+      (a.score / a.times_taken < b.score / b.times_taken) ? 1 : -1).slice(0,3)
 
     // this.props.scores.high_scores.reverse()
 
@@ -26,14 +28,12 @@ class HighScoresPage extends Component {
 
   render() {
     const x = this.props.scores.high_scores.reverse()
-    // console.log(this.props.scores.high_scores.sort((a, b) => (a.score / a.times_taken < b.score / b.times_taken) ? 1 : -1))
+    console.log(this.props.scores.high_scores.filter(x => {
+      return x.times_taken > 5
+    }))
 
 
 
-
-    // console.log(this.state.allScores.filter(n => {
-    //   return n
-    // }))
 
     return (
       <div class="ui center aligned text container">

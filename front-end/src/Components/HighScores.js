@@ -19,7 +19,7 @@ class HighScores extends Component {
         <div>
         <h2>{sc.username}</h2>
         <div></div>
-        <h3>{(sc.score / sc.times_taken) * 100}% correct</h3>
+        <h3>{Math.round((sc.score / sc.times_taken) * 100)}% correct</h3>
         <h3>{sc.times_taken} questions</h3>
         </div>
       </div>
