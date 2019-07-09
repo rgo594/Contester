@@ -14,7 +14,7 @@ class HighScoresPage extends Component {
 
 
     const sorted = filtered.sort((a, b) =>
-      (a.score / a.times_taken < b.score / b.times_taken) ? 1 : -1).slice(0,3)
+      (a.score / a.times_taken < b.score / b.times_taken) ? 1 : -1).slice(0,5)
 
     // this.props.scores.high_scores.reverse()
 
@@ -38,22 +38,24 @@ class HighScoresPage extends Component {
 
     return (
       <div>
-        <button class="ui button" onClick={() => window.location.replace('http://localhost:3001')}>Home</button>
-
         <div class="ui center aligned text container">
-        <h1>High Scores</h1>
-          <thead class="">
-            <tr class="">
-              <th class="">Header</th>
-              <th class="">Header</th>
-              <th class="">Header</th>
-            </tr>
-          </thead>
-          <Table celled>
-            {this.highScores()}
-          </Table>
-        </div>
+        <button class="ui button" onClick={() => window.location.replace('http://localhost:3001')}>Home</button>
+          <h1>High Scores</h1>
 
+          <Table celled>
+            <Table.Header>
+              <Table.Row>
+                <Table.HeaderCell width={4}>Name</Table.HeaderCell>
+                <Table.HeaderCell width={4}>Correct %</Table.HeaderCell>
+                <Table.HeaderCell width={4}>Questions Answered</Table.HeaderCell>
+                <Table.HeaderCell width={4}>Exam</Table.HeaderCell>
+              </Table.Row>
+            </Table.Header>
+          </Table>
+          {this.highScores()}
+
+            <h4 style={{color: 'grey'}}>Must have answered at least 10 questions to make it on the high scores</h4>
+        </div>
       </div>
     );
   }
@@ -61,5 +63,14 @@ class HighScoresPage extends Component {
 }
 
 export default HighScoresPage;
+
+// <h1>High Scores</h1>
+//   <thead class="">
+//     <tr class="">
+//       <th class="">Header</th>
+//       <th class="">Header</th>
+//       <th class="">Header</th>
+//     </tr>
+//   </thead>
 
 // {highScores}
