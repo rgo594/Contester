@@ -3,27 +3,44 @@ import HighScores from '../Components/HighScores.js'
 
 class HighScoresPage extends Component {
   state = {
-    allScores: {high_scores: []}
+    coo: []
   }
 
-  componentDidMount(){
-    fetch(`http://localhost:3000/high_scores`)
-       .then(n => n.json())
-       .then(n => this.setState({allScores: n})
-       )
+  mur = () => {
+    // const meh = this.props.scores.high_scores.map(x => {
+    //   return x.score / x.times_taken
+    // }).sort()
+
+    const sorted = this.props.scores.high_scores.sort((a, b) => (a.score / a.times_taken < b.score / b.times_taken) ? 1 : -1)
+
+    // this.props.scores.high_scores.reverse()
+
+    const highScores = sorted.map(n => {
+      return <HighScores score={n} />
+    })
+    return highScores
   }
+  // componentDidMount(){
+  //
+  // }
 
   render() {
-    const highScores = this.state.allScores.high_scores.map(n => {
-      return <HighScores score={n}/>
-    })
-    console.log(this.state.allScores.high_scores)
+    const x = this.props.scores.high_scores.reverse()
+    // console.log(this.props.scores.high_scores.sort((a, b) => (a.score / a.times_taken < b.score / b.times_taken) ? 1 : -1))
+
+
+
+
+    // console.log(this.state.allScores.filter(n => {
+    //   return n
+    // }))
 
     return (
       <div class="ui center aligned text container">
-      <button class="ui button" onClick={() => window.location.replace('http://localhost:3001')}>Home</button>
+        <button class="ui button" onClick={() => window.location.replace('http://localhost:3001')}>Home</button>
+        <button class="ui button" onClick={() => this.setState({coo: [...this.state.coo, this.props.scores.high_scores]})}>Test</button>
         <h1>High Scores</h1>
-        {highScores}
+        {this.mur()}
       </div>
     );
   }
@@ -31,3 +48,5 @@ class HighScoresPage extends Component {
 }
 
 export default HighScoresPage;
+
+// {highScores}

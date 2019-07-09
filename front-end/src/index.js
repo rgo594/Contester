@@ -8,8 +8,8 @@ import 'semantic-ui-css/semantic.min.css'
 
 ReactDOM.render(
   <ActionCableProvider url='ws://localhost:3000/cable'>
-    <App />
-  </ActionCableProvider>, 
+    <App key="a"/>
+  </ActionCableProvider>,
   document.getElementById('root')
 );
 

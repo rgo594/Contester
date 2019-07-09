@@ -2,10 +2,15 @@ import React, { Component } from 'react';
 
 class HighScores extends Component {
   state = {
-
+    correct: [this.props.score.score]
   }
 
+  // componentDidMount(){
+  //   this.setState( { correct: [...this.state.correct, this.props.score.score] })
+  // }
+
   render() {
+    console.log(this.props.coo)
     const sc = this.props.score
 
     return (

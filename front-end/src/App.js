@@ -12,15 +12,15 @@ import HighScoresPage from './Pages/HighScoresPage.js'
 class App extends React.Component {
   state = {
     loggedIn: false,
-    allScores: ''
+    allScores: {high_scores: []}
   }
 
-  // componentDidMount(){
-  //   fetch(`http://localhost:3000/high_scores`)
-  //     .then(n => n.json())
-  //     .then(n => this.setState({allScores: n})
-  //     )
-  // }
+  componentDidMount(){
+    fetch(`http://localhost:3000/high_scores`)
+      .then(n => n.json())
+      .then(n => this.setState({allScores: n})
+      )
+  }
 
   disp = () => {
     this.setState({
@@ -54,7 +54,7 @@ class App extends React.Component {
               <Route exact path ="/" render={() => <Homepage logOut={this.logOut}/>}/>
               <Route exact path ="/quiz" render={() => <Quiz />}/>
               <Route exact path ="/profile" render={() => <Profile />}/>
-              <Route exact path ="/highScores" render={() => <HighScoresPage/>}/>
+              <Route exact path ="/highScores" render={() => <HighScoresPage scores={this.state.allScores}/>}/>
             </Switch>
           </Router>
         </React.Fragment>

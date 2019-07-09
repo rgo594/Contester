@@ -3,7 +3,7 @@ import Question from './Question'
 import { ActionCableConsumer } from 'react-actioncable-provider'
 import { Button } from 'semantic-ui-react'
 
-const timer = 10
+const timer = 45
 
 class QuestionList extends Component {
 
