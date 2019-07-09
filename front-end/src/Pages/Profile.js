@@ -110,9 +110,9 @@ class Profile extends Component {
           </div>
           :
           <div class="ui center aligned container">
+          <button class="ui submit button" onClick={() => window.location.replace('http://localhost:3001')}>Homepage</button>
             <button class="ui submit button" onClick={() => this.setState({display: !this.state.display})}>Edit Profile?</button>
-            <button class="ui submit button" onClick={() => window.location.replace('http://localhost:3001')}>Homepage</button>
-            
+
             <h1>{localStorage.username}</h1>
             <h1>{this.state.times_taken} Questions Answered</h1>
             <h1>%{(this.state.score / this.state.times_taken) * 100} Correct</h1>

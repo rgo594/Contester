@@ -185,18 +185,18 @@ class QuestionList extends Component {
           </div>
           : this.state.btnDisplay ?
           <div>
-
-            {localStorage.exam == "SAT" ?
-            <div class="ui center aligned text container">
             <h4 style={{fontSize: 40}}>Choose a category</h4>
-              <div class="ui vertical massive buttons">
-                <button class="ui button" onClick={() => { this.filterQuestions(1) } }>SAT English 1</button>
+            {localStorage.exam == "SAT" ?
+            <div class="ui center aligned grid">
 
-                <button class="ui button" onClick={() => { this.filterQuestions(2) } }>SAT English 2</button>
-              </div>
+                <div class="three wide column">
+                    <button class="ui massive green button" onClick={() => { this.filterQuestions(1) } }>English 1</button>
+                    <div class="column"><br></br></div>
+                    <button class="ui massive green button" onClick={() => { this.filterQuestions(2) } }>English 2</button>
+                </div>
 
-              <div class="ui vertical massive buttons">
-                <button class="ui button" onClick={() => { this.filterQuestions(3) } }>SAT Math 1</button>
+                <div class="three wide column">
+                  <button class="ui massive red button" onClick={() => { this.filterQuestions(3) } }>Math 1</button>
               </div>
             </div>
             : localStorage.exam == "Series 7" ?

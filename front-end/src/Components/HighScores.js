@@ -21,6 +21,7 @@ class HighScores extends Component {
         <div></div>
         <h3>{Math.round((sc.score / sc.times_taken) * 100)}% correct</h3>
         <h3>{sc.times_taken} questions</h3>
+        <h3>{sc.subject}</h3>
         </div>
       </div>
     );

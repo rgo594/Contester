@@ -38,7 +38,6 @@ class HighScoresPage extends Component {
     return (
       <div class="ui center aligned text container">
         <button class="ui button" onClick={() => window.location.replace('http://localhost:3001')}>Home</button>
-        <button class="ui button" onClick={() => this.setState({coo: [...this.state.coo, this.props.scores.high_scores]})}>Test</button>
         <h1>High Scores</h1>
         {this.mur()}
       </div>
