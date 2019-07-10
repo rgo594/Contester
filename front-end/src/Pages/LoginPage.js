@@ -47,7 +47,7 @@ handleChange = (event) => {
   render(){
 
     return(
-      <div class="ui center aligned three column grid">
+      <div style={{marginTop: "50px"}} class="ui center aligned three column grid">
 
         <div class="column">
           <h1 class="ui purple image header">Login</h1>

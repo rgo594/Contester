@@ -16,13 +16,13 @@ class HighScores extends Component {
 
     return (
       <div>
-      <Table celled>
-        <Table.Body>
-          <Table.Row>
-            <Table.Cell width={4}>{sc.username}</Table.Cell>
-            <Table.Cell width={4}>{Math.round((sc.score / sc.times_taken) * 100)}%</Table.Cell>
-            <Table.Cell width={4}>{sc.times_taken}</Table.Cell>
-            <Table.Cell width={4}>{sc.subject}</Table.Cell>
+      <Table celled className='t-border'>
+        <Table.Body >
+          <Table.Row className='t-border'>
+            <Table.Cell className='cell-body' width={4}>{sc.username}</Table.Cell>
+            <Table.Cell className='cell-body' width={4}>{Math.round((sc.score / sc.times_taken) * 100)}%</Table.Cell>
+            <Table.Cell className='cell-body' width={4}>{sc.score}/{sc.times_taken}</Table.Cell>
+            <Table.Cell className='cell-body' width={4}>{sc.subject}</Table.Cell>
           </Table.Row>
         </Table.Body>
       </Table>

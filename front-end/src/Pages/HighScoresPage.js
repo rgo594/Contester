@@ -44,22 +44,25 @@ class HighScoresPage extends Component {
     return (
       <div>
         <div class="ui center aligned text container">
-        <button class="ui button" onClick={() => window.location.replace('http://localhost:3001')}>Home</button>
+        <button class="ui huge button" onClick={() => window.location.replace('http://localhost:3001')}>Home</button>
 
-        <div class="ui large buttons">
-          <button class="ui button" onClick={() => { this.setState({exam: "SAT"})}}>SAT</button>
-          <button class="ui button" onClick={() => { this.setState({exam: "Series 7"})}}>Series 7</button>
+        <div class="ui center aligned text container">
+          <h1 style={{margin: '38px'}}>High Scores</h1>
+          <div class="ui left aligned text container">
+            <div class="ui large buttons">
+              <button class="ui button" onClick={() => { this.setState({exam: "SAT"}) } }>SAT</button>
+              <button class="ui button" onClick={() => { this.setState({exam: "Series 7"}) } }>Series 7</button>
+            </div>
+          </div>
         </div>
 
-          <h1>High Scores</h1>
-
-          <Table celled>
+          <Table celled className='t-header'>
             <Table.Header>
               <Table.Row>
-                <Table.HeaderCell width={4}>Name</Table.HeaderCell>
-                <Table.HeaderCell width={4}>Correct %</Table.HeaderCell>
-                <Table.HeaderCell width={4}>Questions Answered</Table.HeaderCell>
-                <Table.HeaderCell width={4}>Exam</Table.HeaderCell>
+                <Table.HeaderCell className='cell-header' width={4}>Name</Table.HeaderCell>
+                <Table.HeaderCell className='cell-header' width={4}>Correct %</Table.HeaderCell>
+                <Table.HeaderCell className='cell-header' width={4}>Questions</Table.HeaderCell>
+                <Table.HeaderCell className='cell-header' width={4}>Exam</Table.HeaderCell>
               </Table.Row>
             </Table.Header>
           </Table>

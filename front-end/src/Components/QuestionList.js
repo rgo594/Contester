@@ -173,6 +173,24 @@ class QuestionList extends Component {
       :
       ''
 
+      const subjectCard = (a, b, c) => {
+        return <div onClick={() => { this.filterQuestions(a) } } class="ui link card">
+          <img src={b} class="ui image" />
+          <div class="content">
+             <div class="description">
+                {c}
+             </div>
+           </div>
+           <div class="extra content">
+             <span class="right floated">
+             </span>
+             <span>
+               <i class="question icon"></i>
+             </span>
+          </div>
+        </div>
+      }
+
     return (
       <div>
 
@@ -186,20 +204,27 @@ class QuestionList extends Component {
 
           : this.state.btnDisplay ?
           <div>
-            <h4 style={{fontSize: 40}}>Choose a category</h4>
-            <div class="column"><br></br></div>
+          <h4 style={{fontSize: '40px', margin: '50px'}}>Choose a category</h4>
+            <div class="column"></div>
             {localStorage.exam == "SAT" ?
-            <div class="ui center aligned grid">
-
-                <div class="three wide column">
-                    <button class="ui massive green button" onClick={() => { this.filterQuestions(1) } }>English 1</button>
-                      <div class="column"><br></br></div>
-                    <button class="ui massive green button" onClick={() => { this.filterQuestions(2) } }>English 2</button>
-                </div>
-
-                <div class="three wide column">
-                  <button class="ui massive red button" onClick={() => { this.filterQuestions(3) } }>Math 1</button>
+            <div class="ui left aligned grid">
+              <div style={{margin: '0'}} class="row">
+                {subjectCard(1, "https://publicdomainphotography.com/samples/NjEzZWZlOWNmZWYw/MjNlZmU5Y2ZlZjA=/Wooden-Block-ABC-Stack.jpg", "English 1")}
+                <div class="column"><br></br></div>
+                {subjectCard(2, "https://publicdomainphotography.com/samples/NjEzZWZlOWNmZWYw/MjNlZmU5Y2ZlZjA=/Wooden-Block-ABC-Stack.jpg", "English 2")}
+                <div class="column"><br></br></div>
+                {subjectCard(2, "https://publicdomainphotography.com/samples/NjEzZWZlOWNmZWYw/MjNlZmU5Y2ZlZjA=/Wooden-Block-ABC-Stack.jpg", "English 3")}
               </div>
+
+              <div class="row">
+                {subjectCard(3, "https://img.purch.com/h/1400/aHR0cDovL3d3dy5saXZlc2NpZW5jZS5jb20vaW1hZ2VzL2kvMDAwLzA4MS85MDEvb3JpZ2luYWwvcGktZGF5LmpwZw==", "Math 1")}
+                <div class="column"><br></br></div>
+                {subjectCard(3, "https://img.purch.com/h/1400/aHR0cDovL3d3dy5saXZlc2NpZW5jZS5jb20vaW1hZ2VzL2kvMDAwLzA4MS85MDEvb3JpZ2luYWwvcGktZGF5LmpwZw==", "Math 2")}
+                <div class="column"><br></br></div>
+                {subjectCard(3, "https://img.purch.com/h/1400/aHR0cDovL3d3dy5saXZlc2NpZW5jZS5jb20vaW1hZ2VzL2kvMDAwLzA4MS85MDEvb3JpZ2luYWwvcGktZGF5LmpwZw==", "Math 3")}
+              </div>
+
+
             </div>
             : localStorage.exam == "Series 7" ?
             <div class="ui center aligned grid">
@@ -221,6 +246,12 @@ class QuestionList extends Component {
 }
 
 export default QuestionList;
+
+// <div class="three wide column">
+//     <button class="ui massive green button" onClick={() => { this.filterQuestions(1) } }>English 1</button>
+//       <div class="column"><br></br></div>
+//     <button class="ui massive green button" onClick={() => { this.filterQuestions(2) } }>English 2</button>
+// </div>
 
 // <ActionCableConsumer
 //   channel={{ channel: 'FeedChannel'}}

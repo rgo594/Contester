@@ -55,7 +55,7 @@ class Question extends Component {
 
     return (
       <div>
-        <div>
+        <div class="ui container">
           <h4 style={{fontSize: 20}} class="ui fluid segment">{this.props.question.description}</h4>
             {choice(this.props.question.a, "a")}
             {choice(this.props.question.b, "b")}

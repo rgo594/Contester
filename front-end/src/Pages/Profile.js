@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import DropdownComp from '../Components/DropdownComp'
+import { Card } from 'semantic-ui-react'
 
 class Profile extends Component {
   state = {
     display: false,
-    username: '',
+    username: localStorage.username,
     password: '',
     avatar: '',
     exam: '',
@@ -38,6 +40,7 @@ class Profile extends Component {
     event.preventDefault()
     console.log(this.state.username)
     console.log(this.state.password)
+    this.state.password === '' ? alert('Cant leave password blank') :
     fetch(`http://localhost:3000/users/${localStorage.user_id}`, {
       method: 'PATCH',
       headers: {
@@ -53,12 +56,28 @@ class Profile extends Component {
       })
     })
       .then(r => r.json())
-      .then(r => console.log(r))
+      .then(r =>
+        fetch(`http://localhost:3000/high_scores/${localStorage.user_id}`, {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json'
+          },
+          body: JSON.stringify({
+            high_score: {
+              username: this.state.username,
+              subject: this.state.exam
+            }
+          })
+        })
+      )
+      localStorage.clear()
       setTimeout(() => {window.location.replace('http://localhost:3001/login')}, 300)
     }
 
   render() {
-    const form = this.state.display ? <div class="ui center aligned three column grid">
+    console.log(this.state.exam)
+    const form = this.state.display ? <div style={{marginTop: '50px'}} class="ui center aligned three column grid">
             <div class="column">
 
               <h1 class="ui purple image header">Edit Profile</h1>
@@ -83,26 +102,21 @@ class Profile extends Component {
                       <br></br>
                     </div>
 
-                      <div class="column">
-                        <select class="ui dropdown" onChange={(e) => this.handleSelect(e.target.value)}>
-                          <option>Select Test</option>
-                          <option name="exam" value="SAT">SAT</option>
-                          <option name="exam" value="Series 7">Series 7</option>
-                        </select>
-                      </div>
+                      <DropdownComp handleSelect={(e) => this.handleSelect(e)}/>
 
                       <div class="column">
                         <br></br>
                       </div>
 
+                      </div>
+                      <div>
+                        <button class="ui submit button" onClick={() => this.setState({display: !this.state.display})}>Hide Form</button>
+                        <input class="ui submit button" type="submit" value="Save Changes" />
+                        <p style={{color: 'grey'}}>(will log you out)</p>
+                      </div>
+                      <div>
                     </div>
-                      <input class="ui submit button" type="submit" value="Save Changes" />
                       <div><br></br></div>
-                    <div>
-                      <button class="ui submit button" onClick={() => window.location.replace('http://localhost:3001')}>Homepage</button>
-                    </div>
-                      <div><br></br></div>
-                      <button class="ui submit button" onClick={() => this.setState({display: !this.state.display})}>Hide Form</button>
                     </div>
                 </form>
 
@@ -110,12 +124,14 @@ class Profile extends Component {
           </div>
           :
           <div class="ui center aligned container">
-          <button class="ui submit button" onClick={() => window.location.replace('http://localhost:3001')}>Homepage</button>
-            <button class="ui submit button" onClick={() => this.setState({display: !this.state.display})}>Edit Profile?</button>
 
-            <h1>{localStorage.username}</h1>
-            <h1>{this.state.times_taken} Questions Answered</h1>
-            <h1>{Math.round((this.state.score / this.state.times_taken) * 100)}% Correct</h1>
+            <button class="ui huge submit button" onClick={() => this.setState({display: !this.state.display})}>Edit Profile?</button>
+            <button class="ui huge submit button" onClick={() => window.location.replace('http://localhost:3001')}>Homepage</button>
+            <div style={{margin: '0%'}}>
+              <h1>{localStorage.username}</h1>
+              <h1>{this.state.score}/{this.state.times_taken} Questions</h1>
+              <h1>{Math.round((this.state.score / this.state.times_taken) * 100)}% Correct</h1>
+            </div>
           </div>
 
     return (
@@ -129,5 +145,13 @@ class Profile extends Component {
   }
 
 }
+
+// <div class="column">
+//   <select class="ui dropdown" onChange={(e) => this.handleSelect(e.target.value)}>
+//     <option>Select Test</option>
+//     <option name="exam" value="SAT">SAT</option>
+//     <option name="exam" value="Series 7">Series 7</option>
+//   </select>
+// </div>
 
 export default Profile;

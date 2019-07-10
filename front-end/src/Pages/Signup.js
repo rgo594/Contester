@@ -1,4 +1,6 @@
 import React from 'react';
+import DropdownComp from '../Components/DropdownComp'
+import { Dropdown } from 'semantic-ui-react'
 
 class Signup extends React.Component{
   state= {
@@ -60,8 +62,11 @@ handleSignup = (event) => {
   }
 
   render(){
+
+    console.log(this.state)
+
     return(
-      <div class="ui center aligned three column grid">
+      <div style={{marginTop: "50px"}} class="ui center aligned three column grid">
 
         <div class="column">
           <h1 class="ui purple image header">Signup</h1>
@@ -86,13 +91,7 @@ handleSignup = (event) => {
                   <br></br>
                 </div>
 
-                  <div class="column">
-                    <select class="ui dropdown" onChange={(e) => this.handleSelect(e.target.value)}>
-                      <option>Select Test</option>
-                      <option name="exam" value="SAT">SAT</option>
-                      <option name="exam" value="Series 7">Series 7</option>
-                    </select>
-                  </div>
+                  <DropdownComp handleSelect={(e) => this.handleSelect(e)}/>
 
                   <div class="column">
                     <br></br>
@@ -111,6 +110,14 @@ handleSignup = (event) => {
 }
 
 export default Signup
+
+// <div style={{width: '59%', margin:'0 auto'}}>
+//   <select  class="ui dropdown" onChange={(e) => this.handleSelect(e.target.value)} >
+//     <option>Select Test</option>
+//     <option name="exam" value="SAT">SAT</option>
+//     <option name="exam" value="Series 7">Series 7</option>
+//   </select>
+// </div>
 
 
 

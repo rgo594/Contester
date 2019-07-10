@@ -20,7 +20,7 @@ Question.create :description => "Choose a synonym of pretentious",
   :answer => "c",
   :quiz_id => 1
 
-Question.create :description => "Choose a synonym of boring",
+Question.create :description => "Choose a synonym of dull",
   :a => "spartan",
   :b => "jejune",
   :c => "tawdry",
@@ -36,7 +36,7 @@ Question.create :description => "'Let us go fourth to lead the land we love.' Wh
   :answer => "d",
   :quiz_id => 1
 
-Question.create :description => "The rabbit, introduced into Australia by English settlers, bred prolific and quickly became a pest, eating farmers grain and animal feed.",
+Question.create :description => "Find the Error - The rabbit, introduced into Australia by English settlers, bred prolific and quickly became a pest, eating farmers grain and animal feed.",
   :a => "The rabbit",
   :b => "bred prolific",
   :c => "eating",
