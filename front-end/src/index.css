@@ -47,20 +47,59 @@ code {
   border-bottom: 3px solid black
 }
 
-div#banner {
+div#banner{
   position: absolute;
   top: 0;
   left: 0;
   background-color: #a333c8;
   width: 100%;
 }
-div#banner-content {
+div#banner-content{
   width: 800px;
   margin: 0 auto;
   padding: 10px;
   border: 1px solid #000;
 }
 
+div#welcome{
+  height: 250px;
+  width: 90%;
+  background-image: url(http://www.specialisthr.com.au/wp-content/uploads/bfi_thumb/Messy-Desk-Specialist-HR-mmlfm0h72tl55zpxs8wia6kr7lwcpa8w32s00d96m0.jpg)
+}
+
+.ban-text{
+  font-size: 120px;
+  color: red;
+  text-shadow: 10px 2px black
+}
+
 .ui.link.card {
   margin: 0
+}
+
+table#coo.ui.celled.table{
+  font-size: 45px;
+  color: white;
+  text-shadow: 2px 1px black;
+  background-color: black;
+  margin: 110px;
+  width: 500px;
+  border: 10px solid grey;
+}
+
+.pro-cell{
+  border-bottom: 10px solid grey;
+}
+
+div#mur{
+  height: 500px;
+  width: 750px;
+}
+
+div#edit-dropdown{
+
+}
+
+div#coo.ui.card {
+  margin: 0;
 }

@@ -181,13 +181,6 @@ class QuestionList extends Component {
                 {c}
              </div>
            </div>
-           <div class="extra content">
-             <span class="right floated">
-             </span>
-             <span>
-               <i class="question icon"></i>
-             </span>
-          </div>
         </div>
       }
 
@@ -204,7 +197,13 @@ class QuestionList extends Component {
 
           : this.state.btnDisplay ?
           <div>
-          <h4 style={{fontSize: '40px', margin: '50px'}}>Choose a category</h4>
+          <h4 style={{fontSize: '40px', margin: '50px'}}></h4>
+          <div id="welcome" >
+            <br></br>
+            <br></br>
+            <h1 class='ban-text'>Contester</h1>
+          </div>
+            <br></br>
             <div class="column"></div>
             {localStorage.exam == "SAT" ?
             <div class="ui left aligned grid">
@@ -227,13 +226,25 @@ class QuestionList extends Component {
 
             </div>
             : localStorage.exam == "Series 7" ?
-            <div class="ui center aligned grid">
-              <div class="three wide column">
-                <button class="ui massive button" onClick={() => { this.filterQuestions(4) } }>Series 7</button>
-              </div>
+            <div class="ui left aligned grid">
+            <div style={{margin: '0'}} class="row">
+              {subjectCard(4, "https://finance.univie.ac.at/fileadmin/_processed_/csm_web_Banking-and-Finance_Hauptbi_672df5bcac.jpg", "Series 7")}
+              <div class="column"><br></br></div>
+              {subjectCard(4, "https://finance.univie.ac.at/fileadmin/_processed_/csm_web_Banking-and-Finance_Hauptbi_672df5bcac.jpg", "Series 7")}
+              <div class="column"><br></br></div>
+              {subjectCard(4, "https://finance.univie.ac.at/fileadmin/_processed_/csm_web_Banking-and-Finance_Hauptbi_672df5bcac.jpg", "Series 7")}
+            </div>
             </div>
             :
-            <button class="ui massive button"onClick={() => { this.filterQuestions(5) } }>???</button>
+            <div class="ui left aligned grid">
+            <div class="row">
+              {subjectCard(5, "https://mondrian.mashable.com/uploads%252Fstory%252Fthumbnail%252F62525%252F2ffae0de-6d1f-436e-bb32-b55b797465af.jpg%252F950x534.jpg?signature=Rnsrdr6eOd2-YFiigSkjDHFmLe0=&source=https%3A%2F%2Fblueprint-api-production.s3.amazonaws.com", "Lord of the Rings")}
+              <div class="column"><br></br></div>
+              {subjectCard(5, "https://mondrian.mashable.com/uploads%252Fstory%252Fthumbnail%252F62525%252F2ffae0de-6d1f-436e-bb32-b55b797465af.jpg%252F950x534.jpg?signature=Rnsrdr6eOd2-YFiigSkjDHFmLe0=&source=https%3A%2F%2Fblueprint-api-production.s3.amazonaws.com", "Math 2")}
+              <div class="column"><br></br></div>
+              {subjectCard(5, "https://mondrian.mashable.com/uploads%252Fstory%252Fthumbnail%252F62525%252F2ffae0de-6d1f-436e-bb32-b55b797465af.jpg%252F950x534.jpg?signature=Rnsrdr6eOd2-YFiigSkjDHFmLe0=&source=https%3A%2F%2Fblueprint-api-production.s3.amazonaws.com", "Math 3")}
+            </div>
+            </div>
             }
           </div>
           : ''

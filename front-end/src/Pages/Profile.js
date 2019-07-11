@@ -77,7 +77,7 @@ class Profile extends Component {
 
   render() {
     console.log(this.state.exam)
-    const form = this.state.display ? <div style={{marginTop: '50px'}} class="ui center aligned three column grid">
+    const form = this.state.display ? <div style={{marginTop: '50px'}} class="ui center aligned two column grid">
             <div class="column">
 
               <h1 class="ui purple image header">Edit Profile</h1>
@@ -107,7 +107,6 @@ class Profile extends Component {
                       <div class="column">
                         <br></br>
                       </div>
-
                       </div>
                       <div>
                         <button class="ui submit button" onClick={() => this.setState({display: !this.state.display})}>Hide Form</button>
@@ -123,20 +122,31 @@ class Profile extends Component {
             </div>
           </div>
           :
-          <div class="ui center aligned container">
-
-            <button class="ui huge submit button" onClick={() => this.setState({display: !this.state.display})}>Edit Profile?</button>
-            <button class="ui huge submit button" onClick={() => window.location.replace('http://localhost:3001')}>Homepage</button>
-            <div style={{margin: '0%'}}>
-              <h1>{localStorage.username}</h1>
-              <h1>{this.state.score}/{this.state.times_taken} Questions</h1>
-              <h1>{Math.round((this.state.score / this.state.times_taken) * 100)}% Correct</h1>
+          <div id='mur'>
+            <div id='banner'>
+              <button class="ui purple huge submit button" onClick={() => this.setState({display: !this.state.display})}>Edit Profile?</button>
+              <button class="ui purple huge submit button" onClick={() => window.location.replace('http://localhost:3001')}>Homepage</button>
             </div>
+
+            <table id='coo' class="ui center aligned celled table">
+              <tbody>
+                <tr>
+                  <td class='pro-cell' data-label="Name">{localStorage.username}</td>
+                </tr>
+                <tr>
+                  <td class='pro-cell'>{this.state.score}/{this.state.times_taken} Questions</td>
+                </tr>
+                <tr>
+                  <td data-label="Job">{Math.round((this.state.score / this.state.times_taken) * 100)}% Correct</td>
+                </tr>
+              </tbody>
+            </table>
+
           </div>
 
     return (
       localStorage.loggedIn ?
-      <div class="ui center aligned container">
+      <div id='mur' class="ui center aligned container">
         {form}
       </div>
       :

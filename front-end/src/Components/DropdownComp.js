@@ -17,7 +17,7 @@ const testOptions = [
 const DropdownComp = (props) => {
   return <Dropdown
     onChange={(e) => props.handleSelect(e.target.innerText)}
-    style={{width: '59%', margin:'0 auto'}}
+    style={{width: '66.5%', margin:'0 auto'}}
     placeholder='Select Exam'
     fluid
     selection

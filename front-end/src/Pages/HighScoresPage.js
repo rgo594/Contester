@@ -44,10 +44,12 @@ class HighScoresPage extends Component {
     return (
       <div>
         <div class="ui center aligned text container">
-        <button class="ui huge button" onClick={() => window.location.replace('http://localhost:3001')}>Home</button>
+          <div id="banner">
+            <button style={{color: 'white'}} class="ui purple huge button" onClick={() => window.location.replace('http://localhost:3001')}>Home</button>
+          </div>
 
         <div class="ui center aligned text container">
-          <h1 style={{margin: '38px'}}>High Scores</h1>
+          <h1 style={{margin: '60px'}}>High Scores</h1>
           <div class="ui left aligned text container">
             <div class="ui large buttons">
               <button class="ui button" onClick={() => { this.setState({exam: "SAT"}) } }>SAT</button>
